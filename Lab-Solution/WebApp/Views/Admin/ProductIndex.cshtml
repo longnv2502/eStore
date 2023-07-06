@@ -1,0 +1,110 @@
+﻿@model IEnumerable<BussinessObject.Models.Product>
+
+@{
+    ViewData["Title"] = "ProductIndex";
+}
+
+<h1>ProductIndex</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitsInStock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            const app = appClient();
+            const tbody = $("tbody");
+            let products = [];
+
+            init();
+
+            const init = () => {
+                app.products.getAll().subscribe(
+                    (resp) => {
+                        console.log(resp);
+                        products = resp;
+                        render();
+                    }, (error) => {
+                        alert("Server is error!");
+                        console.error(error);
+                    }
+                );
+            };
+
+            const delete = (id) => {
+                if (confirm('Are You Sure?')) {
+                    app.products.delete(id).subscribe(
+                        (res) => {
+                            const removeIndex = products.findIndex(item => item.ProductId === id);
+                            removeIndex && products.splice(removeIndex, 1);
+                            render();
+                        }, (error) => {
+                            alert("Server is error!");
+                            console.error(error);
+                        }
+                    )
+                }
+            }
+
+            const render = () => {
+                const html = '';
+                products.forEach((item) => html.concat(`
+                        <tr>
+                            <td>
+                                ${item.ProductId}
+                            </td>
+                            <td>
+                                ${item.ProductName}
+                            </td>
+                            <td>
+                                ${item.Weight}
+                            </td>
+                            <td>
+                                ${item.UnitPrice}
+                            </td>
+                            <td>
+                                ${item.UnitsInStock}
+                            </td>
+                            <td>
+                                ${item.CategoryId}
+                            </td>
+                            <td>
+                                <a href="./edit/${item.ProductId}">Edit</a>
+                                <a href="./details/${item.ProductId}"></a>
+                                <button class="btn btn-primary" onclick="delete(${item.ProductId})"></button>
+                            </td>
+                        </tr>
+                        `));
+                tbody.html(html);
+            }
+        });
+    </script>
+}

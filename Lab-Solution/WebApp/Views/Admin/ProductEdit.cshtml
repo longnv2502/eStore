@@ -1,0 +1,84 @@
+﻿@model BussinessObject.Models.Product
+
+@{
+    ViewData["Title"] = "ProductEdit";
+}
+
+<h1>ProductEdit</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form action="" method="post">
+            <div class="form-group">
+                <label for="ProductId" class="control-label"></label>
+                <input name="ProductId" id="ProductId" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="ProductName" class="control-label"></label>
+                <input name="ProductName" id="ProductName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="Weight" class="control-label"></label>
+                <input name="Weight" id="Weight" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="UnitPrice" class="control-label"></label>
+                <input name="UnitPrice" id="UnitPrice" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="UnitsInStock" class="control-label"></label>
+                <input name="UnitsInStock" id="UnitsInStock" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="CategoryId" class="control-label"></label>
+                <input name="CategoryId" id="CategoryId" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a href="javascript:history.back()">Go Back</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            const app = appClient();
+            $("form").validate({
+                onfocusout: false,
+                onkeyup: false,
+                onclick: false,
+                rules: {
+                    "user": {
+                        required: true,
+                        maxlength: 15
+                    },
+                    "password": {
+                        required: true,
+                        minlength: 8
+                    },
+                    "re-password": {
+                        equalTo: "#password",
+                        minlength: 8
+                    }
+                }
+            });
+            $("form").submit(function (event) {
+                event.preventDefault();
+                const firstfield_value = event.currentTarget[0].value;
+                const secondfield_value = event.currentTarget[1].value;
+                
+            });
+        });
+
+    </script>
+}
