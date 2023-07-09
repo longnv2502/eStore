@@ -14,21 +14,19 @@ namespace BussinessObject.Configuration
     {
         public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {
-            var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            var adminConfig = config.GetSection("Admin");
             PasswordHasher<ApplicationUser> hasher = new PasswordHasher<ApplicationUser>();
             builder.HasData(
                 new ApplicationUser
                 {
                     Id = ConstantConfiguration.Admin.ID,
-                    FirsName = "Long",
+                    FirstName = "Long",
                     LastName = "NV",
                     UserName = "Administrator",
                     NormalizedUserName = "Administrator",
-                    Email = adminConfig.GetSection("Email").Value,
+                    Email = "admin@estore.com",
                     EmailConfirmed = true,
-                    NormalizedEmail = adminConfig.GetSection("Email").Value,
-                    PasswordHash = hasher.HashPassword(null, adminConfig.GetSection("Password").Value),
+                    NormalizedEmail = "admin@estore.com",
+                    PasswordHash = hasher.HashPassword(null, "admin@@"),
                     SecurityStamp = string.Empty,
                     ConcurrencyStamp = Guid.NewGuid().ToString(),
                 }

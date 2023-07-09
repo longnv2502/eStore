@@ -7,13 +7,25 @@ namespace WebApp.Controllers
     public class AdminController : Controller
     {
         [Route("users")]
-        public IActionResult UserIndex ()
+        public IActionResult UserIndex()
         {
-            return View(); 
+            return View();
         }
 
         [Route("orders")]
         public IActionResult OrderIndex()
+        {
+            return View();
+        }
+
+        [Route("orders/detail")]
+        public IActionResult OrderDetail()
+        {
+            return View();
+        }
+
+        [Route("orders/edit")]
+        public IActionResult OrderEdit()
         {
             return View();
         }
@@ -24,10 +36,23 @@ namespace WebApp.Controllers
             return View();
         }
 
+        [Route("products/detail")]
+        public IActionResult ProductDetail()
+        {
+            return View();
+        }
+
+        [Route("products/create")]
+        public IActionResult ProductCreate()
+        {
+            return View();
+        }
+
         [Route("products/edit")]
         public IActionResult ProductEdit()
         {
             return View();
         }
+
     }
 }

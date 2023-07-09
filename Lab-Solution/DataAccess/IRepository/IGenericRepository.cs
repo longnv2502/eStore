@@ -1,4 +1,5 @@
 ﻿using DataAccess.Models;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
@@ -25,8 +26,10 @@ namespace DataAccess.IRepository
         Task<T> Get(Expression<Func<T, bool>> expression, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
         Task Insert(T entity);
         Task InsertRange(IEnumerable<T> entities);
-        Task Delete(int id);
+        Task<T> Patch(JsonPatchDocument patch, params object[] keyValues);
+        Task<T> Delete(params object[] keyValues);
         void DeleteRange(IEnumerable<T> entities);
         void Update(T entity);
+        void UpdateRange(IEnumerable<T> entities);
     }
 }

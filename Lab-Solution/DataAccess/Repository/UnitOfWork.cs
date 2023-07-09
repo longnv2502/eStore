@@ -11,20 +11,16 @@ namespace DataAccess.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly EStoreContext _context;
-        private IGenericRepository<Cart> _cart;
-        private IGenericRepository<CartDetail> _cartDetails;
-        private IGenericRepository<Category> _categories;
-        private IGenericRepository<Order> _orders;
-        private IGenericRepository<OrderDetail> _orderDetails;
-        private IGenericRepository<Product> _products;
+        private readonly EStoreContext _context = null!;
+        private IGenericRepository<Category> _categories = null!;
+        private IGenericRepository<Order> _orders = null!;
+        private IGenericRepository<OrderDetail> _orderDetails = null!;
+        private IGenericRepository<Product> _products = null!;
 
         public UnitOfWork(EStoreContext context)
         {
             _context = context;
         }
-        public IGenericRepository<Cart> Carts => _cart ??= new GenericRepository<Cart>(_context);
-        public IGenericRepository<CartDetail> CartDetails => _cartDetails ??= new GenericRepository<CartDetail>(_context);
         public IGenericRepository<Category> Categories => _categories ??= new GenericRepository<Category>(_context);
         public IGenericRepository<Order> Orders => _orders ??= new GenericRepository<Order>(_context);
         public IGenericRepository<OrderDetail> OrderDetails => _orderDetails ??= new GenericRepository<OrderDetail>(_context);

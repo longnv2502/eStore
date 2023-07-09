@@ -17,64 +17,10 @@ namespace BussinessObject.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.16")
+                .HasAnnotation("ProductVersion", "6.0.18")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("BussinessObject.Models.Cart", b =>
-                {
-                    b.Property<int>("CartId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartId"), 1L, 1);
-
-                    b.Property<double?>("CartTotle")
-                        .HasColumnType("float");
-
-                    b.Property<string>("MemberId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("CartId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Carts");
-                });
-
-            modelBuilder.Entity("BussinessObject.Models.CartDetail", b =>
-                {
-                    b.Property<int>("CartDetailId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartDetailId"), 1L, 1);
-
-                    b.Property<int?>("CartId")
-                        .HasColumnType("int");
-
-                    b.Property<double?>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("CartDetailId");
-
-                    b.HasIndex("CartId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("CartDetails");
-                });
 
             modelBuilder.Entity("BussinessObject.Models.Category", b =>
                 {
@@ -85,11 +31,39 @@ namespace BussinessObject.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"), 1L, 1);
 
                     b.Property<string>("CategoryName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CategoryId");
 
                     b.ToTable("Category");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            CategoryName = "Enim Etiam Corp"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            CategoryName = "Facilisis Vitae Orci LLC"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            CategoryName = "Fringilla Ornare Associates"
+                        },
+                        new
+                        {
+                            CategoryId = 4,
+                            CategoryName = "Primis In Faucibus Consulting"
+                        },
+                        new
+                        {
+                            CategoryId = 5,
+                            CategoryName = "Suspendisse Associates"
+                        });
                 });
 
             modelBuilder.Entity("BussinessObject.Models.Order", b =>
@@ -104,6 +78,7 @@ namespace BussinessObject.Migrations
                         .HasColumnType("real");
 
                     b.Property<string>("MemberId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("OrderDate")
@@ -116,6 +91,7 @@ namespace BussinessObject.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("OrderId");
@@ -157,10 +133,11 @@ namespace BussinessObject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"), 1L, 1);
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("ProductName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("UnitPrice")
@@ -177,6 +154,143 @@ namespace BussinessObject.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Product");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductId = 1,
+                            CategoryId = 4,
+                            ProductName = "Hendrerit Donec",
+                            UnitPrice = 0.62,
+                            UnitsInStock = 20,
+                            Weight = 0.5
+                        },
+                        new
+                        {
+                            ProductId = 2,
+                            CategoryId = 2,
+                            ProductName = "Euismod In Dolor Foundation",
+                            UnitPrice = 0.39000000000000001,
+                            UnitsInStock = 12,
+                            Weight = 0.5
+                        },
+                        new
+                        {
+                            ProductId = 3,
+                            CategoryId = 4,
+                            ProductName = "Faucibus Morbi Vehicula Industries",
+                            UnitPrice = 12.43,
+                            UnitsInStock = 8,
+                            Weight = 0.5
+                        },
+                        new
+                        {
+                            ProductId = 4,
+                            CategoryId = 3,
+                            ProductName = "Magnis LLC",
+                            UnitPrice = 9.8000000000000007,
+                            UnitsInStock = 18,
+                            Weight = 0.5
+                        },
+                        new
+                        {
+                            ProductId = 5,
+                            CategoryId = 1,
+                            ProductName = "Ante Inc.",
+                            UnitPrice = 15.9,
+                            UnitsInStock = 5,
+                            Weight = 0.5
+                        },
+                        new
+                        {
+                            ProductId = 6,
+                            CategoryId = 1,
+                            ProductName = "Curabitur Dictum Associates",
+                            UnitPrice = 19.170000000000002,
+                            UnitsInStock = 5,
+                            Weight = 0.5
+                        },
+                        new
+                        {
+                            ProductId = 7,
+                            CategoryId = 2,
+                            ProductName = "Adipiscing Non Luctus Industries",
+                            UnitPrice = 9.9800000000000004,
+                            UnitsInStock = 17,
+                            Weight = 0.5
+                        },
+                        new
+                        {
+                            ProductId = 8,
+                            CategoryId = 1,
+                            ProductName = "Magna Nec Quam PC",
+                            UnitPrice = 16.309999999999999,
+                            UnitsInStock = 19,
+                            Weight = 0.5
+                        },
+                        new
+                        {
+                            ProductId = 9,
+                            CategoryId = 1,
+                            ProductName = "Est Nunc Institute",
+                            UnitPrice = 18.100000000000001,
+                            UnitsInStock = 13,
+                            Weight = 0.5
+                        },
+                        new
+                        {
+                            ProductId = 10,
+                            CategoryId = 3,
+                            ProductName = "Egestas Sed Pharetra Foundation",
+                            UnitPrice = 12.289999999999999,
+                            UnitsInStock = 1,
+                            Weight = 0.5
+                        },
+                        new
+                        {
+                            ProductId = 11,
+                            CategoryId = 3,
+                            ProductName = "Donec Est Institute",
+                            UnitPrice = 19.829999999999998,
+                            UnitsInStock = 11,
+                            Weight = 0.5
+                        },
+                        new
+                        {
+                            ProductId = 12,
+                            CategoryId = 5,
+                            ProductName = "Nunc Limited",
+                            UnitPrice = 10.77,
+                            UnitsInStock = 15,
+                            Weight = 0.5
+                        },
+                        new
+                        {
+                            ProductId = 13,
+                            CategoryId = 3,
+                            ProductName = "Tincidunt Corp.",
+                            UnitPrice = 15.220000000000001,
+                            UnitsInStock = 5,
+                            Weight = 0.5
+                        },
+                        new
+                        {
+                            ProductId = 14,
+                            CategoryId = 3,
+                            ProductName = "Nec Mauris Inc.",
+                            UnitPrice = 12.539999999999999,
+                            UnitsInStock = 8,
+                            Weight = 0.5
+                        },
+                        new
+                        {
+                            ProductId = 15,
+                            CategoryId = 3,
+                            ProductName = "Risus A Industries",
+                            UnitPrice = 11.210000000000001,
+                            UnitsInStock = 6,
+                            Weight = 0.5
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -204,6 +318,22 @@ namespace BussinessObject.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "ea8f8c86-cbd8-489c-b8fe-a830f98ced93",
+                            ConcurrencyStamp = "131ae0f3-dc05-443a-9ad8-ec142a277f84",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        },
+                        new
+                        {
+                            Id = "0895bc1b-0f56-4583-a6e7-cbab984c3deb",
+                            ConcurrencyStamp = "a9449b31-027d-4509-a48d-98d0863d09f7",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -362,6 +492,13 @@ namespace BussinessObject.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "6332562a-6fab-4a96-ad60-6eebb08332fe",
+                            RoleId = "0895bc1b-0f56-4583-a6e7-cbab984c3deb"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -388,45 +525,43 @@ namespace BussinessObject.Migrations
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
                     b.Property<string>("FirsName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
-                });
 
-            modelBuilder.Entity("BussinessObject.Models.Cart", b =>
-                {
-                    b.HasOne("BussinessObject.Models.ApplicationUser", "User")
-                        .WithMany("Carts")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("BussinessObject.Models.CartDetail", b =>
-                {
-                    b.HasOne("BussinessObject.Models.Cart", "Cart")
-                        .WithMany("CartDetails")
-                        .HasForeignKey("CartId");
-
-                    b.HasOne("BussinessObject.Models.Product", "Product")
-                        .WithMany("CartDetails")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cart");
-
-                    b.Navigation("Product");
+                    b.HasData(
+                        new
+                        {
+                            Id = "6332562a-6fab-4a96-ad60-6eebb08332fe",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "fe17e632-6d94-4011-bd47-b02f7b435a1d",
+                            Email = "admin@estore.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "admin@estore.com",
+                            NormalizedUserName = "Administrator",
+                            PasswordHash = "AQAAAAEAACcQAAAAENL/2deT/uw1ybMFRHvfvHJDP32SpCOHBoJxWjsksOxys+HtGLEYEV1AS7Iv9rPKzg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "Administrator",
+                            FirsName = "Long",
+                            LastName = "NV"
+                        });
                 });
 
             modelBuilder.Entity("BussinessObject.Models.Order", b =>
                 {
                     b.HasOne("BussinessObject.Models.ApplicationUser", "User")
                         .WithMany("Orders")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -454,7 +589,9 @@ namespace BussinessObject.Migrations
                 {
                     b.HasOne("BussinessObject.Models.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Category");
                 });
@@ -510,11 +647,6 @@ namespace BussinessObject.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BussinessObject.Models.Cart", b =>
-                {
-                    b.Navigation("CartDetails");
-                });
-
             modelBuilder.Entity("BussinessObject.Models.Category", b =>
                 {
                     b.Navigation("Products");
@@ -527,15 +659,11 @@ namespace BussinessObject.Migrations
 
             modelBuilder.Entity("BussinessObject.Models.Product", b =>
                 {
-                    b.Navigation("CartDetails");
-
                     b.Navigation("OrderDetails");
                 });
 
             modelBuilder.Entity("BussinessObject.Models.ApplicationUser", b =>
                 {
-                    b.Navigation("Carts");
-
                     b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618

@@ -15,7 +15,6 @@ namespace BussinessObject.Models
     {
         public Product()
         {
-            CartDetails = new HashSet<CartDetail>();
             OrderDetails = new HashSet<OrderDetail>();
         }
 
@@ -27,7 +26,6 @@ namespace BussinessObject.Models
         public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; } = null!;
-        public virtual ICollection<CartDetail> CartDetails { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 
     }

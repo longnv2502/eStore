@@ -12,13 +12,11 @@ namespace BussinessObject.Models
     {
         public ApplicationUser()
         {
-            Carts = new HashSet<Cart>();
             Orders = new HashSet<Order>();
         }
 
-        public string FirsName { get; set; } = null!;
+        public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
-        public virtual ICollection<Cart> Carts { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
     }
 }

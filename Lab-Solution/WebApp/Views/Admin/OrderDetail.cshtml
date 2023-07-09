@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewData["Title"] = "OrderDetail";
+}
+
+<h1>OrderDetail</h1>
+
+<div>
+    <h4>Order</h4>
+    <hr/>
+    <dl class="row">
+        <dt class="col-sm-2">Id</dt>
+        <dd class="col-sm-10" id="orderId"></dd>
+        <dt class="col-sm-2">Order Date</dt>
+        <dd class="col-sm-10" id="orderDate"></dd>
+        <dt class="col-sm-2">Required Date</dt>
+        <dd class="col-sm-10" id="requiredDate"></dd>
+        <dt class="col-sm-2">Shipped Date</dt>
+        <dd class="col-sm-10" id="shippedDate"></dd>
+        <dt class="col-sm-2">Feight</dt>
+        <dd class="col-sm-10" id="feight"></dd>
+        <dt class="col-sm-2">Member Id</dt>
+        <dd class="col-sm-10" id="memberId"></dd>
+        <dt class="col-sm-2">OrderDetail</dt>
+        <dd class="col-sm-10" id="orderDetail">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ProductId</th>
+                    <th>UnitPrice</th>
+                    <th>Quantity</th>
+                    <th>Discount</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a href="../edit">Edit</a>
+    <a href="../">Back to List</a>
+</div>

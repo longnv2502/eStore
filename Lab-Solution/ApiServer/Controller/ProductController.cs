@@ -3,9 +3,11 @@ using BussinessObject.Models;
 using DataAccess.IRepository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using System.Security.Principal;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -31,51 +33,64 @@ namespace ApiServer.Controller
         [Route("")]
         public async Task<IActionResult> GetAll()
         {
-            var products = await _unitOfWork.Products.GetAll(include: p => p.Include(p0 => p0.Category));
+            var products = await _unitOfWork.Products.GetAll(include: act => act.Include(p0 => p0.Category));
             return Ok(products);
         }
 
         [HttpGet]
+        [Route("{id:int}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var product = await _unitOfWork.Products.Get(p => p.ProductId == id, p => p.Include(p0 => p0.Category));
+            var product = await _unitOfWork.Products.Get(p => p.ProductId == id, act => act.Include(p0 => p0.Category));
             return Ok(product);
         }
 
         [HttpGet]
-        public async Task<IActionResult> SearchProductByName(string? Keyword)
+        [Route("filter")]
+        public async Task<IActionResult> FilterByName(string? Keyword)
         {
             Expression<Func<Product, bool>> expression = (p) => true;
             if (Keyword != null)
             {
                 expression = expression.And(p => p.ProductName.Contains(Keyword));
             }
-            var products = await _unitOfWork.Products.GetAll(expression: expression, include: p => p.Include(p0 => p0.Category));
+            var products = await _unitOfWork.Products.GetAll(expression: expression, include: act => act.Include(p0 => p0.Category));
             return Ok(products);
         }
 
-        [HttpPost]
-        public IActionResult AddProduct(Product product)
+        [HttpPost, Authorize(Roles = "ADMINISTRATOR")]
+        [Route("")]
+        public async Task<IActionResult> Insert([FromBody] Product product)
         {
-            _unitOfWork.Products.Insert(product);
-            _unitOfWork.Save();
-            return Ok("Insert Successfull!!!");
+            await _unitOfWork.Products.Insert(product);
+            await _unitOfWork.Save();
+            return Ok(product);
         }
 
-        [HttpPut]
-        public IActionResult UpdateProduct(Product product)
+        [HttpPut, Authorize(Roles = "ADMINISTRATOR")]
+        [Route("")]
+        public async Task<IActionResult> Update([FromBody] Product product)
         {
             _unitOfWork.Products.Update(product);
-            _unitOfWork.Save();
-            return Ok("Update Successfull!!!");
+            await _unitOfWork.Save();
+            return Ok(product);
         }
 
-        [HttpDelete]
-        public IActionResult DeleteProduct(int id)
+        [HttpPatch, Authorize(Roles = "ADMINISTRATOR")]
+        [Route("{id:int}")]
+        public async Task<IActionResult> Patch(int id, [FromBody] JsonPatchDocument patch)
         {
-            _unitOfWork.Products.Delete(id);
-            _unitOfWork.Save();
-            return Ok("Delete Successfull!!!");
+            var product = await _unitOfWork.Products.Patch(patch, id);
+            return Ok(product);
+        }
+
+        [HttpDelete, Authorize(Roles = "ADMINISTRATOR")]
+        [Route("{id:int}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var product = await _unitOfWork.Products.Delete(id);
+            await _unitOfWork.Save();
+            return Ok(product);
         }
     }
 }

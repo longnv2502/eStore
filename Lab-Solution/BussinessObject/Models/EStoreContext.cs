@@ -23,8 +23,6 @@ namespace BussinessObject.Models
         {
         }
 
-        public virtual DbSet<Cart> Carts { get; set; } 
-        public virtual DbSet<CartDetail> CartDetails { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
@@ -41,10 +39,17 @@ namespace BussinessObject.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Config Schema 
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfiguration(new RoleConfiguration());
             modelBuilder.Entity<OrderDetail>()
                   .HasKey(orderDetail => new { orderDetail.OrderId, orderDetail.ProductId });
+
+            // Init Data
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
+            modelBuilder.ApplyConfiguration(new AdminConfiguration());
+            modelBuilder.ApplyConfiguration(new AdminRoleConfiguration());
+            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
         }
     }
 }

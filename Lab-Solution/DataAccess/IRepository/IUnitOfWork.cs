@@ -10,8 +10,6 @@ namespace DataAccess.IRepository
 {
     public interface IUnitOfWork : IDisposable
     {
-        IGenericRepository<Cart> Carts { get; }
-        IGenericRepository<CartDetail> CartDetails { get; }
         IGenericRepository<Category> Categories { get; }
         IGenericRepository<Order> Orders { get; }
         IGenericRepository<OrderDetail> OrderDetails { get; }

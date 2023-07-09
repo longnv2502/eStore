@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+<div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                <div class="card" style="border-radius: 15px;">
+                    <div class="card-body p-5">
+                        <h2 class="text-uppercase text-center mb-5">Login an account</h2>
+                        <form action="" method="post">
+
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="username">User Name</label>
+                                <input type="text" id="username" name="username" class="form-control" />
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="password">Password</label>
+                                <input type="password" id="password" name="password" class="form-control" />
+                            </div>
+
+
+                            <div class="row mb-5">
+                                <div class="col d-flex justify-content-center">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+                                        <label class="text-body" for="form2Example31"> Remember me </label>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <a href="#!">Forgot password?</a>
+                                </div>
+                            </div>
+
+
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg mb-4"> Login </button>
+                            </div>
+
+
+                            <div class="text-center text-muted mt-5 mb-0">
+                                <p>Not a member? <a class="fw-bold text-body" href="./register">Register</a></p>
+                                <p>or sign up with:</p>
+                                
+                                <button type="button" class="btn btn-link btn-floating mx-1">
+                                    <i class="fab fa-facebook-f"></i>
+                                </button>
+
+                                <button type="button" class="btn btn-link btn-floating mx-1">
+                                    <i class="fab fa-google"></i>
+                                </button>
+
+                                <button type="button" class="btn btn-link btn-floating mx-1">
+                                    <i class="fab fa-twitter"></i>
+                                </button>
+
+                                <button type="button" class="btn btn-link btn-floating mx-1">
+                                    <i class="fab fa-github"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

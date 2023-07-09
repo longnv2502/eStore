@@ -1,5 +1,4 @@
-﻿@model IEnumerable<BussinessObject.Models.Product>
-
+﻿
 @{
     ViewData["Title"] = "ProductIndex";
 }
@@ -7,30 +6,18 @@
 <h1>ProductIndex</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a href="./create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Weight)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UnitPrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UnitsInStock)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CategoryId)
-            </th>
-            <th></th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Weight</th>
+            <th>UnitPrice</th>
+            <th>UnitsInStock</th>
+            <th>Category Id</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -39,72 +26,76 @@
 
 @section Scripts {
     <script>
-        $(document).ready(function () {
-            const app = appClient();
-            const tbody = $("tbody");
-            let products = [];
+        console.log("Test")
+        const app = appClient();
+        const tbody = $("tbody");
+        let products = [];
 
-            init();
 
-            const init = () => {
-                app.products.getAll().subscribe(
-                    (resp) => {
-                        console.log(resp);
-                        products = resp;
+        ; (function () {
+            console.log("Test2")
+            app.products.getAll().subscribe(
+                (resp) => {
+                    console.log(resp);
+                    products = resp;
+                    console.log(products);
+                    render();
+                }, (error) => {
+                    alert("Server is error!");
+                    console.error(error);
+                }
+            );
+        })();
+
+        const deleteItem = (id) => {
+            if (confirm('Are You Sure?')) {
+                app.products.delete(id).subscribe(
+                    (res) => {
+                        const removeIndex = products.findIndex(item => item.ProductId === id);
+                        removeIndex && products.splice(removeIndex, 1);
                         render();
                     }, (error) => {
                         alert("Server is error!");
                         console.error(error);
                     }
-                );
-            };
-
-            const delete = (id) => {
-                if (confirm('Are You Sure?')) {
-                    app.products.delete(id).subscribe(
-                        (res) => {
-                            const removeIndex = products.findIndex(item => item.ProductId === id);
-                            removeIndex && products.splice(removeIndex, 1);
-                            render();
-                        }, (error) => {
-                            alert("Server is error!");
-                            console.error(error);
-                        }
-                    )
-                }
+                )
             }
+        }
 
-            const render = () => {
-                const html = '';
-                products.forEach((item) => html.concat(`
-                        <tr>
-                            <td>
-                                ${item.ProductId}
-                            </td>
-                            <td>
-                                ${item.ProductName}
-                            </td>
-                            <td>
-                                ${item.Weight}
-                            </td>
-                            <td>
-                                ${item.UnitPrice}
-                            </td>
-                            <td>
-                                ${item.UnitsInStock}
-                            </td>
-                            <td>
-                                ${item.CategoryId}
-                            </td>
-                            <td>
-                                <a href="./edit/${item.ProductId}">Edit</a>
-                                <a href="./details/${item.ProductId}"></a>
-                                <button class="btn btn-primary" onclick="delete(${item.ProductId})"></button>
-                            </td>
-                        </tr>
-                        `));
-                tbody.html(html);
-            }
-        });
+        const render = () => {
+            let html = '';
+            products.forEach((item) => 
+            {
+                html += `
+                    <tr>
+                        <td>
+                            ${item.productId}
+                        </td>
+                        <td>
+                            ${item.productName}
+                        </td>
+                        <td>
+                            ${item.weight}
+                        </td>
+                        <td>
+                            ${item.unitPrice}
+                        </td>
+                        <td>
+                            ${item.unitsInStock}
+                        </td>
+                        <td>
+                            ${item.categoryId}
+                        </td>
+                        <td>
+                            <a href="./edit/${item.productId}"><button class="btn btn-secondary">Edit</button></a>
+                            <a href="./details/${item.productId}"><button class="btn btn-info">Details</button></a>
+                            <button class="btn btn-danger" onclick="deleteItem(${item.productId})">Delete</button>
+                        </td>
+                    </tr>
+                    `;
+            });
+            console.log(html);
+            tbody.html(html);
+        }
     </script>
 }

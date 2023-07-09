@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "ProductCreate";
+}
+
+<h1>ProductCreate</h1>
+
+<h4>Product</h4>
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        <form action="" method="post">
+            <div class="form-group">
+                <label for="productId" class="control-label">ProductId</label>
+                <input type="number" name="productId" id="productId" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="productName" class="control-label">ProductName</label>
+                <input type="text" name="productName" id="productName" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="weight" class="control-label">Weight</label>
+                <input type="text" name="weight" id="weight" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="unitPrice" class="control-label">UnitPrice</label>
+                <input type="text" name="unitPrice" id="unitPrice" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="unitsInStock" class="control-label">UnitsInStock</label>
+                <input type="number" name="unitsInStock" id="unitsInStock" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="categoryId" class="control-label">CategoryId</label>
+                <input type="number" name="categoryId" id="categoryId" class="form-control"/>
+            </div>
+            <div class="form-group mt-4">
+                <input type="submit" value="Save" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a href="../">Back to List</a>
+</div>

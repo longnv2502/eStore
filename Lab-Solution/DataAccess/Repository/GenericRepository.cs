@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using X.PagedList;
 using BussinessObject.Models;
+using Microsoft.AspNetCore.JsonPatch;
+using System.Security.Principal;
 
 namespace DataAccess.Repository
 {
@@ -22,28 +24,6 @@ namespace DataAccess.Repository
         {
             _context = context;
             _db = _context.Set<T>();
-        }
-
-        public async Task Delete(int id)
-        {
-            var entity = await _db.FindAsync(id);
-            _db.Remove(entity);
-        }
-
-        public void DeleteRange(IEnumerable<T> entities)
-        {
-            _db.RemoveRange(entities);
-        }
-
-        public async Task<T> Get(Expression<Func<T, bool>> expression, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
-        {
-            IQueryable<T> query = _db;
-            if (include != null)
-            {
-                query = include(query);
-            }
-
-            return await query.AsNoTracking().FirstOrDefaultAsync(expression);
         }
 
         public async Task<IList<T>> GetAll(Expression<Func<T, bool>> expression = null,
@@ -84,6 +64,17 @@ namespace DataAccess.Repository
                 .ToPagedListAsync(pageable.PageNumber, pageable.PageSize);
         }
 
+        public async Task<T> Get(Expression<Func<T, bool>> expression, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
+        {
+            IQueryable<T> query = _db;
+            if (include != null)
+            {
+                query = include(query);
+            }
+
+            return await query.AsNoTracking().FirstOrDefaultAsync(expression);
+        }
+
         public async Task Insert(T entity)
         {
             await _db.AddAsync(entity);
@@ -94,10 +85,36 @@ namespace DataAccess.Repository
             await _db.AddRangeAsync(entities);
         }
 
+        public async Task<T> Patch(JsonPatchDocument patch, params object[] keyValues)
+        {
+            var entity = await _db.FindAsync(keyValues);
+            patch.ApplyTo(entity);
+            Update(entity);
+            return entity;
+        }
+
+        public async Task<T> Delete(params object[] keyValues)
+        {
+            var entity = await _db.FindAsync(keyValues);
+            _db.Remove(entity);
+            return entity;
+        }
+
+        public void DeleteRange(IEnumerable<T> entities)
+        {
+            _db.RemoveRange(entities);
+        }
+
         public void Update(T entity)
         {
             _db.Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
+        }
+
+        public void UpdateRange(IEnumerable<T> entities)
+        {
+            _db.AttachRange(entities);
+            entities.ToList().ForEach(entity => _context.Entry(entity).State = EntityState.Modified);
         }
     }
 }

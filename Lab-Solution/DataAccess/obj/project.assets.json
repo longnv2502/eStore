@@ -2424,19 +2424,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\LONGNV\\.nuget\\packages\\": {}
+    "C:\\Users\\dclon\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LONGNV\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\DataAccess\\DataAccess.csproj",
+      "projectUniqueName": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\DataAccess\\DataAccess.csproj",
       "projectName": "DataAccess",
-      "projectPath": "C:\\Users\\LONGNV\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\DataAccess\\DataAccess.csproj",
-      "packagesPath": "C:\\Users\\LONGNV\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LONGNV\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\DataAccess\\obj\\",
+      "projectPath": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\DataAccess\\DataAccess.csproj",
+      "packagesPath": "C:\\Users\\dclon\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\DataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\LONGNV\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\dclon\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2450,8 +2450,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\LONGNV\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\BussinessObject\\BussinessObject.csproj": {
-              "projectPath": "C:\\Users\\LONGNV\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\BussinessObject\\BussinessObject.csproj"
+            "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\BussinessObject\\BussinessObject.csproj": {
+              "projectPath": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\BussinessObject\\BussinessObject.csproj"
             }
           }
         }
@@ -2499,7 +2499,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
