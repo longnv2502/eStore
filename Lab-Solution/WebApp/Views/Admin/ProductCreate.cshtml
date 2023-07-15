@@ -1,41 +1,40 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "ProductCreate";
 }
 
 <h1>ProductCreate</h1>
 
 <h4>Product</h4>
-<hr/>
+<hr />
 <div class="row">
     <div class="col-md-4">
         <form action="" method="post">
             <div class="form-group">
                 <label for="productId" class="control-label">ProductId</label>
-                <input type="number" name="productId" id="productId" class="form-control"/>
+                <input type="number" name="productId" id="productId" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="productName" class="control-label">ProductName</label>
-                <input type="text" name="productName" id="productName" class="form-control"/>
+                <input type="text" name="productName" id="productName" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="weight" class="control-label">Weight</label>
-                <input type="text" name="weight" id="weight" class="form-control"/>
+                <input type="text" name="weight" id="weight" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="unitPrice" class="control-label">UnitPrice</label>
-                <input type="text" name="unitPrice" id="unitPrice" class="form-control"/>
+                <input type="text" name="unitPrice" id="unitPrice" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="unitsInStock" class="control-label">UnitsInStock</label>
-                <input type="number" name="unitsInStock" id="unitsInStock" class="form-control"/>
+                <input type="number" name="unitsInStock" id="unitsInStock" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="categoryId" class="control-label">CategoryId</label>
-                <input type="number" name="categoryId" id="categoryId" class="form-control"/>
+                <input type="number" name="categoryId" id="categoryId" class="form-control" />
             </div>
             <div class="form-group mt-4">
-                <input type="submit" value="Save" class="btn btn-primary"/>
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -44,3 +43,61 @@
 <div>
     <a href="../">Back to List</a>
 </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function () {
+            const app = appClient();
+            const form = $("form");
+            form.validate({
+                onfocusout: false,
+                onkeyup: false,
+                onclick: false,
+                errorClass: 'is-invalid',
+                validClass: 'is-valid',
+                rules: {
+                    "productId": {
+                        required: true,
+                    },
+                    "productName": {
+                        required: true,
+                    },
+                    "weight": {
+                        required: true,
+                    },
+                    "unitPrice": {
+                        required: true,
+                    },
+                    "unitsInStock": {
+                        required: true,
+                    },
+                    "categoryId": {
+                        required: true,
+                    }
+                }
+            });
+            form.submit(function (event) {
+                event.preventDefault();
+                console.log(event)
+                console.log(form.valid())
+                console.log(form)
+                if (form.valid()) {
+                    const payload = {
+                        "productId": event.currentTarget[0].value,
+                        "productName": event.currentTarget[1].value,
+                        "weight": event.currentTarget[2].value,
+                        "unitPrice": event.currentTarget[3].value,
+                        "unitsInStock": event.currentTarget[4].value,
+                        "categoryId": event.currentTarget[5].value,
+                    }
+                    console.log(payload);
+                }
+
+            });
+        });
+    </script>
+}

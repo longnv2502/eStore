@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\BussinessObject\\BussinessObject.csproj": {}
+    "D:\\Lab2\\Lab-Solution\\BussinessObject\\BussinessObject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\BussinessObject\\BussinessObject.csproj": {
+    "D:\\Lab2\\Lab-Solution\\BussinessObject\\BussinessObject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\BussinessObject\\BussinessObject.csproj",
+        "projectUniqueName": "D:\\Lab2\\Lab-Solution\\BussinessObject\\BussinessObject.csproj",
         "projectName": "BussinessObject",
-        "projectPath": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\BussinessObject\\BussinessObject.csproj",
+        "projectPath": "D:\\Lab2\\Lab-Solution\\BussinessObject\\BussinessObject.csproj",
         "packagesPath": "C:\\Users\\dclon\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\BussinessObject\\obj\\",
+        "outputPath": "D:\\Lab2\\Lab-Solution\\BussinessObject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dclon\\AppData\\Roaming\\NuGet\\NuGet.Config",

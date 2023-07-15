@@ -10982,11 +10982,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\WebApp.csproj",
+      "projectUniqueName": "D:\\Lab2\\Lab-Solution\\WebApp\\WebApp.csproj",
       "projectName": "WebApp",
-      "projectPath": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\WebApp.csproj",
+      "projectPath": "D:\\Lab2\\Lab-Solution\\WebApp\\WebApp.csproj",
       "packagesPath": "C:\\Users\\dclon\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\obj\\",
+      "outputPath": "D:\\Lab2\\Lab-Solution\\WebApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dclon\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -11003,8 +11003,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\BussinessObject\\BussinessObject.csproj": {
-              "projectPath": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\BussinessObject\\BussinessObject.csproj"
+            "D:\\Lab2\\Lab-Solution\\BussinessObject\\BussinessObject.csproj": {
+              "projectPath": "D:\\Lab2\\Lab-Solution\\BussinessObject\\BussinessObject.csproj"
             }
           }
         }

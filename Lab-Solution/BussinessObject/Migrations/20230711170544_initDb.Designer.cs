@@ -12,14 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BussinessObject.Migrations
 {
     [DbContext(typeof(EStoreContext))]
-    [Migration("20230708014108_initDb")]
+    [Migration("20230711170544_initDb")]
     partial class initDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.18")
+                .HasAnnotation("ProductVersion", "6.0.16")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -324,15 +324,15 @@ namespace BussinessObject.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ea8f8c86-cbd8-489c-b8fe-a830f98ced93",
-                            ConcurrencyStamp = "131ae0f3-dc05-443a-9ad8-ec142a277f84",
+                            Id = "aeb2da8e-c86f-42ed-b14d-8b7103c8ab51",
+                            ConcurrencyStamp = "353a3b8d-3668-4cd0-b383-fb80ac8f990a",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "0895bc1b-0f56-4583-a6e7-cbab984c3deb",
-                            ConcurrencyStamp = "a9449b31-027d-4509-a48d-98d0863d09f7",
+                            Id = "7a5b379f-3f38-45ec-b812-d051c922cdc6",
+                            ConcurrencyStamp = "53799af8-5226-4125-bed8-32f0f5450b8c",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -498,8 +498,8 @@ namespace BussinessObject.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "6332562a-6fab-4a96-ad60-6eebb08332fe",
-                            RoleId = "0895bc1b-0f56-4583-a6e7-cbab984c3deb"
+                            UserId = "431b72eb-3370-45ce-b9fa-fa0dea66e5c6",
+                            RoleId = "7a5b379f-3f38-45ec-b812-d051c922cdc6"
                         });
                 });
 
@@ -526,7 +526,7 @@ namespace BussinessObject.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<string>("FirsName")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -539,20 +539,20 @@ namespace BussinessObject.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6332562a-6fab-4a96-ad60-6eebb08332fe",
+                            Id = "431b72eb-3370-45ce-b9fa-fa0dea66e5c6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fe17e632-6d94-4011-bd47-b02f7b435a1d",
+                            ConcurrencyStamp = "ac9fd5f5-7cee-4fd3-8588-fa32eae4acac",
                             Email = "admin@estore.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@estore.com",
                             NormalizedUserName = "Administrator",
-                            PasswordHash = "AQAAAAEAACcQAAAAENL/2deT/uw1ybMFRHvfvHJDP32SpCOHBoJxWjsksOxys+HtGLEYEV1AS7Iv9rPKzg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPWfp04hi7mosxZxpQAtbquRGuN2nzn/PudxhDj9dT7BnMh84jSnnLOwXLDmH8KJ8A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
                             UserName = "Administrator",
-                            FirsName = "Long",
+                            FirstName = "Long",
                             LastName = "NV"
                         });
                 });

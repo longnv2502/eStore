@@ -11,11 +11,11 @@
                 <div class="card" style="border-radius: 15px;">
                     <div class="card-body p-5">
                         <h2 class="text-uppercase text-center mb-5">Login an account</h2>
-                        <form action="" method="post">
+                        <form method="post">
 
                             <div class="form-outline mb-4">
-                                <label class="form-label" for="username">User Name</label>
-                                <input type="text" id="username" name="username" class="form-control" />
+                                <label class="form-label" for="email">Email</label>
+                                <input type="text" id="email" name="email" class="form-control" />
                             </div>
 
                             <div class="form-outline mb-4">
@@ -70,3 +70,52 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            const app = appClient();
+            const form = $("form");
+            console.log(form)
+            form.validate({
+                onfocusout: false,
+                onkeyup: false,
+                onclick: false,
+                errorClass: 'is-invalid',
+                validClass: 'is-valid',
+                rules: {
+                    "email": {
+                        required: true,
+                    },
+                    "password": {
+                        required: true,
+                    }
+                }
+            });
+            $("form").submit(function (event) {
+                event.preventDefault();
+                console.log(event)
+                console.log(form.valid())
+                console.log(form)
+                if (form.valid()) {
+                    const payload = {
+                        "email": event.currentTarget[0].value,
+                        "password": event.currentTarget[1].value,
+                    }
+                    console.log(payload);
+                    app.auth.login(JSON.stringify(payload)).subscribe(
+                        (resp) => {
+                            app.auth.saveToken(resp.token);
+                            window.location.href = '/';
+                        },
+                        (error) => {console.error(error)}
+                    );
+                }
+            });
+        });
+
+    </script>
+}

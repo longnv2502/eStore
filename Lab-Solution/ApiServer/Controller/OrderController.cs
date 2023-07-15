@@ -43,6 +43,7 @@ namespace ApiServer.Controller
         }
 
         [HttpGet]
+        //[Authorize]
         [Route("{userId:int}")]
         public async Task<IActionResult> GetByUserId(string userId)
         {
@@ -50,7 +51,7 @@ namespace ApiServer.Controller
             return Ok(orders);
         }
 
-        [HttpPost, Authorize]
+        [HttpPost]
         [Route("")]
         public async Task<IActionResult> Insert([FromBody] OrderDTO orderDTO)
         {
@@ -62,9 +63,10 @@ namespace ApiServer.Controller
             return Ok(order);
         }
 
-        [HttpPut, Authorize]
-        [Route("")]
-        public async Task<IActionResult> Update([FromBody] Order order)
+        [HttpPut]
+        //[Authorize]
+        [Route("{id:int}")]
+        public async Task<IActionResult> Update(int id, [FromBody] Order order)
         {
             _unitOfWork.OrderDetails.UpdateRange(order.OrderDetails);
             _unitOfWork.Orders.Update(order);
@@ -72,7 +74,8 @@ namespace ApiServer.Controller
             return Ok(order);
         }
 
-        [HttpDelete, Authorize]
+        [HttpDelete]
+        //[Authorize]
         [Route("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {

@@ -18,6 +18,18 @@ namespace WebApp.Controllers
             return View();
         }
 
+        [Route("checkout")]
+        public IActionResult Checkout()
+        {
+            return View();
+        }
+
+        [Route("products")]
+        public IActionResult ProductDetails()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

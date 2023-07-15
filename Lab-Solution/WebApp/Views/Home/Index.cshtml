@@ -2,7 +2,35 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h3>All Pizzas</h3>
+<div class="container d-grid grid gap-5" style="grid-template-columns: repeat(3, 1fr)" id="container">
 </div>
+
+@section Scripts {
+    <script>
+        let products = [];
+        app.products.getAll().subscribe(
+            (resp) => {
+                products = resp;
+                const html = products.reduce((accumulator, currentValue) => {
+                    return accumulator += 
+                    `
+                        <div class="card" style="width: 18rem;">
+                            <a class="nav-link text-dark" href="./products?id=${currentValue.productId}" style="border-bottom: 1px solid #ccc">
+                                <img class="card-img-top" src="https://vanphongphamtintuong.com/wp-content/uploads/woocommerce-placeholder.png" alt="Pizza image">
+                            </a>
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">${currentValue.productName}</h5>
+                                <h6 class="card-title text-primary">${currentValue.category.categoryName}</h6>
+                                <a href="./products?id=${currentValue.productId}" class="btn round-black-btn mt-auto">Add Pizza</a>
+                            </div>
+                        </div>
+                    `
+                }, '');
+                $('#container').html(html);
+            }, (error) => {
+                console.error(error);
+            }
+        )
+    </script>
+}

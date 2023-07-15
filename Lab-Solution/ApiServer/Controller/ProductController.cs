@@ -29,6 +29,7 @@ namespace ApiServer.Controller
             _mapper = mapper;
         }
 
+
         [HttpGet]
         [Route("")]
         public async Task<IActionResult> GetAll()
@@ -58,7 +59,8 @@ namespace ApiServer.Controller
             return Ok(products);
         }
 
-        [HttpPost, Authorize(Roles = "ADMINISTRATOR")]
+        [HttpPost]
+        //[Authorize(Roles = "ADMINISTRATOR")]
         [Route("")]
         public async Task<IActionResult> Insert([FromBody] Product product)
         {
@@ -67,7 +69,8 @@ namespace ApiServer.Controller
             return Ok(product);
         }
 
-        [HttpPut, Authorize(Roles = "ADMINISTRATOR")]
+        [HttpPut]
+        //[Authorize(Roles = "ADMINISTRATOR")]
         [Route("")]
         public async Task<IActionResult> Update([FromBody] Product product)
         {
@@ -76,7 +79,8 @@ namespace ApiServer.Controller
             return Ok(product);
         }
 
-        [HttpPatch, Authorize(Roles = "ADMINISTRATOR")]
+        [HttpPatch]
+        //[Authorize(Roles = "ADMINISTRATOR")]
         [Route("{id:int}")]
         public async Task<IActionResult> Patch(int id, [FromBody] JsonPatchDocument patch)
         {
@@ -84,7 +88,8 @@ namespace ApiServer.Controller
             return Ok(product);
         }
 
-        [HttpDelete, Authorize(Roles = "ADMINISTRATOR")]
+        [HttpDelete]
+        //[Authorize(Roles = "ADMINISTRATOR")]
         [Route("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {

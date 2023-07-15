@@ -23,3 +23,74 @@
     <tbody>
     </tbody>
 </table>
+
+@section Scripts {
+    <script>
+        const app = appClient();
+        const tbody = $("tbody");
+        let orders = [];
+
+
+        ; (function () {
+            app.orders.getAll().subscribe(
+                (resp) => {
+                    console.log(resp);
+                    orders = resp;
+                    render();
+                }, (error) => {
+                    alert("Server is error!");
+                    console.error(error);
+                }
+            );
+        })();
+
+        const deleteItem = (id) => {
+            if (confirm('Are You Sure?')) {
+                app.orders.delete(id).subscribe(
+                    (res) => {
+                        const removeIndex = orders.findIndex(item => item.orderId === id);
+                        removeIndex && orders.splice(removeIndex, 1);
+                        render();
+                    }, (error) => {
+                        alert("Server is error!");
+                        console.error(error);
+                    }
+                )
+            }
+        }
+
+        const render = () => {
+            let html = '';
+            orders.forEach((item) => {
+                html += `
+                            <tr>
+                                <td>
+                                    ${item.orderId}
+                                </td>
+                                <td>
+                                    ${item.orderDate}
+                                </td>
+                                <td>
+                                    ${item.requiredDate}
+                                </td>
+                                <td>
+                                    ${item.shippedDate}
+                                </td>
+                                <td>
+                                    ${item.feight}
+                                </td>
+                                <td>
+                                    ${item.memberId}
+                                </td>
+                                <td>
+                                    <a href="./edit/${item.orderId}"><button class="btn btn-secondary">Edit</button></a>
+                                    <a href="./details/${item.orderId}"><button class="btn btn-info">Details</button></a>
+                                    <button class="btn btn-danger" onclick="deleteItem(${item.orderId})">Delete</button>
+                                </td>
+                            </tr>
+                            `;
+            });
+            tbody.html(html);
+        }
+    </script>
+}
