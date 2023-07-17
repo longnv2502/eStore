@@ -9,6 +9,10 @@
     {
       "library": "jose@4.14.4",
       "destination": "wwwroot/lib/jose/"
+    },
+    {
+      "library": "sweetalert2@11.7.18",
+      "destination": "wwwroot/lib/sweetalert2/"
     }
   ]
 }

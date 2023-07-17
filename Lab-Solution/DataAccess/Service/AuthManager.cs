@@ -22,12 +22,31 @@ namespace DataAccess.Services
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IConfiguration _configuration;
         private ApplicationUser _user;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private IConfigurationSection _jwtSettings { get { return _configuration.GetSection("Jwt"); } }
         public AuthManager(UserManager<ApplicationUser> userManager,
-            IConfiguration configuration)
+            IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;
             _configuration = configuration;
+            _httpContextAccessor = httpContextAccessor;
+        }
+
+        public String GetUserId()
+        {
+            var claims = DecodeJwt2Claims();
+            return claims.FirstOrDefault(x => x.Type.Equals("Id")).Value;
+        }
+
+        public IEnumerable<Claim>? DecodeJwt2Claims()
+        {
+            // Cast to ClaimsIdentity.
+            var identity = _httpContextAccessor.HttpContext.User.Identity as ClaimsIdentity;
+            if (identity == null) return null;
+
+            // Gets list of claims.
+            IEnumerable<Claim> claim = identity.Claims;
+            return claim;
         }
 
         public async Task<string> CreateToken()
@@ -58,7 +77,8 @@ namespace DataAccess.Services
         {
             var claims = new List<Claim>
              {
-                 new Claim(ClaimTypes.Name, _user.UserName)
+                 new Claim(ClaimTypes.Name, _user.UserName),
+                 new Claim("Id", _user.Id),
              };
 
             var roles = await _userManager.GetRolesAsync(_user);

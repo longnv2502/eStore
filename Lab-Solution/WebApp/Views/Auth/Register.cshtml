@@ -10,25 +10,35 @@
                     <div class="card-body p-5">
                         <h2 class="text-uppercase text-center mb-5">Create an account</h2>
                         <form action="" method="post">
-
-                            <div class="form-outline mb-4">
-                                <label class="form-label" for="fullname">Full Name</label>
-                                <input type="text" id="fullname" name="FullName" class="form-control form-control-lg" />
+                            <div class="form-outline mb-4 row">
+                                <div class="col-6">
+                                    <label class="form-label" for="firstName">First Name</label>
+                                    <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" />
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label" for="lastName">Last Name</label>
+                                    <input type="text" id="lastName" name="lastName" class="form-control form-control-lg" />
+                                </div>
                             </div>
 
                             <div class="form-outline mb-4">
-                                <label class="form-label" for="username">User Name</label>
-                                <input type="text" id="username" name="UserName" class="form-control form-control-lg" />
+                                <label class="form-label" for="email">Email</label>
+                                <input type="text" id="email" name="email" class="form-control form-control-lg" />
                             </div>
 
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="password">Password</label>
-                                <input type="password" id="password" name="Password" class="form-control form-control-lg" />
+                                <input type="password" id="password" name="password" class="form-control form-control-lg" />
                             </div>
 
                             <div class="form-outline mb-4">
-                                <label class="form-label" for="cpassword">Repeat your password</label>
-                                <input type="password" id="cpassword" name="CPassword" class="form-control form-control-lg" />
+                                <label class="form-label" for="cPassword">Repeat your password</label>
+                                <input type="password" id="cPassword" name="cPassword" class="form-control form-control-lg" />
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="phoneNumber">PhoneNumber</label>
+                                <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control form-control-lg" />
                             </div>
 
                             <div class="form-check d-flex align-items-center flex-column mb-5">
@@ -55,3 +65,65 @@
     </div>
 </div>
 
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            const app = appClient();
+            const form = $("form");
+            console.log(form)
+            form.validate({
+                onfocusout: false,
+                onkeyup: false,
+                onclick: false,
+                errorClass: 'is-invalid',
+                validClass: 'is-valid',
+                rules: {
+                    "firstName": {
+                        required: true,
+                    },
+                    "lastName": {
+                        required: true,
+                    },
+                    "email": {
+                        required: true,
+                    },
+                    "password": {
+                        required: true,
+                    },
+                    "cPassword": {
+                        required: true,
+                        equalTo: "#password",
+                    },
+                    "phoneNumber": {
+                        required: true,
+                    }
+                }
+            });
+            $("form").submit(function (event) {
+                event.preventDefault();
+                if (form.valid()) {
+                    const payload = {
+                        "firstName": event.currentTarget[0].value,
+                        "lastName": event.currentTarget[1].value,
+                        "email": event.currentTarget[2].value,
+                        "password": event.currentTarget[3].value,
+                        "phoneNumber": event.currentTarget[5].value,
+                    }
+                    app.auth.register(payload).subscribe(
+                        (resp) => {
+                            sweetAlert.toast.success("Register successfully!");
+                            window.location.href = '/';
+                        },
+                        (error) => { 
+                            console.error(error);
+                            sweetAlert.toast.error("Register failed, please check again!");
+                        }
+                    );
+                }
+            });
+        });
+    </script>
+}

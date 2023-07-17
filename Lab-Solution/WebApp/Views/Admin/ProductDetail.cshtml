@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "ProductDetail";
 }
 
@@ -9,21 +8,43 @@
     <h4>Product</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">Id</dt>
-        <dd class = "col-sm-10" id="productId"></dd>
-        <dt class = "col-sm-2">Name</dt>
-        <dd class = "col-sm-10" id="productName"></dd>
-        <dt class = "col-sm-2">Weight</dt>
-        <dd class = "col-sm-10" id="weight"></dd>
-        <dt class = "col-sm-2">UnitPrice</dt>
-        <dd class = "col-sm-10" id="unitPrice"></dd>
-        <dt class = "col-sm-2">UnitsInStock</dt>
-        <dd class = "col-sm-10" id="unitsInStock"></dd>
-        <dt class = "col-sm-2">CategoryId</dt>
-        <dd class = "col-sm-10" id="categoryId"></dd>
+        <dt class="col-sm-2">Id</dt>
+        <dd class="col-sm-10" id="productId"></dd>
+        <dt class="col-sm-2">Name</dt>
+        <dd class="col-sm-10" id="productName"></dd>
+        <dt class="col-sm-2">Weight</dt>
+        <dd class="col-sm-10" id="weight"></dd>
+        <dt class="col-sm-2">UnitPrice</dt>
+        <dd class="col-sm-10" id="unitPrice"></dd>
+        <dt class="col-sm-2">UnitsInStock</dt>
+        <dd class="col-sm-10" id="unitsInStock"></dd>
+        <dt class="col-sm-2">CategoryId</dt>
+        <dd class="col-sm-10" id="categoryId"></dd>
     </dl>
 </div>
 <div>
-    <a href="../edit">Edit</a>
-    <a href="../">Back to List</a>
+    <a id="edit">Edit</a>
+    <a href="../products">Back to List</a>
 </div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            let searchParams = new URLSearchParams(window.location.search);
+            const id = searchParams.get("id");
+            app.products.getById(id).subscribe(
+                (resp) => {
+                    $("#productId").text(resp.productId);
+                    $("#productName").text(resp.productName);
+                    $("#weight").text(resp.weight);
+                    $("#unitPrice").text(resp.unitPrice);
+                    $("#unitsInStock").text(resp.unitsInStock);
+                    $("#categoryId").text(resp.categoryId);
+                    $("#edit").attr("href", `edit?id=${id}`)
+                }, (error) => {
+
+                }
+            )
+        });
+    </script>
+}

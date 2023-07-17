@@ -10,13 +10,13 @@ namespace BussinessObject.Configuration
     {
         public class Role
         {
-            public static readonly string ADMIN_ID = Guid.NewGuid().ToString();
-            public static readonly string USER_ID = Guid.NewGuid().ToString();
+            public static readonly string ADMIN_ID = "7a5b379f-3f38-45ec-b812-d051c922cdc6";
+            public static readonly string USER_ID = "aeb2da8e-c86f-42ed-b14d-8b7103c8ab51";
         }
 
         public class Admin
         {
-            public static readonly string ID = Guid.NewGuid().ToString();
+            public static readonly string ID = "431b72eb-3370-45ce-b9fa-fa0dea66e5c6";
         }
     }
 }

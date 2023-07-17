@@ -17,8 +17,10 @@ namespace DataAccess.Configuration
             CreateMap<ApplicationUser, RegisterUserDTO>().ReverseMap();
             CreateMap<OrderDetail, OrderDetailDTO>().ReverseMap();
             CreateMap<Order, OrderDTO>()
-                .ForMember(dest => dest.orderDetailDTOs, act => act.MapFrom(src => src.OrderDetails))
+                .ForMember(dest => dest.OrderDetailDTOs, act => act.MapFrom(src => src.OrderDetails))
                 .ReverseMap();
+            CreateMap<Order, OrderUpdateDto>().ReverseMap();
+            CreateMap<Product, ProductDto>().ReverseMap();
         }
     }
 }

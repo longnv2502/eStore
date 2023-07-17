@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "OrderEdit";
 }
 
@@ -12,29 +11,29 @@
         <form action="" method="post">
             <div class="form-group">
                 <label for="orderId" class="control-label">Order Id</label>
-                <input name="orderId" id="orderId" class="form-control" />
+                <input type="text" name="orderId" id="orderId" disabled class="form-control" />
             </div>
             <div class="form-group">
                 <label for="orderDate" class="control-label">Order Date</label>
-                <input name="orderDate" id="orderDate" class="form-control" />
+                <input type="datetime-local" name="orderDate" id="orderDate" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="requiredDate" class="control-label">Required Date</label>
-                <input name="requiredDate" id="requiredDate" class="form-control" />
+                <input type="datetime" name="requiredDate" id="requiredDate" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="shippedDate" class="control-label">Shipped Date</label>
-                <input name="shippedDate" id="shippedDate" class="form-control" />
+                <input type="datetime-local" name="shippedDate" id="shippedDate" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="feight" class="control-label">Feight</label>
-                <input name="feight" id="feight" class="form-control" />
+                <input type="text" name="feight" id="feight" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="memberId" class="control-label">Member Id</label>
-                <input name="memberId" id="memberId" class="form-control" />
+                <input type="text" name="memberId" id="memberId" class="form-control" />
             </div>
-            <div class="form-group">
+            <div class="form-group mt-4">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
@@ -42,6 +41,81 @@
 </div>
 
 <div>
-    <a href="../">Back to List</a>
+    <a href="../orders">Back to List</a>
 </div>
 
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+
+        let searchParams = new URLSearchParams(window.location.search);
+        const id = searchParams.get("id");
+        app.orders.getById(id).subscribe(
+            (resp) => {
+                $("input[name='orderId']").val(resp.orderId);
+                $("input[name='orderDate']").val(resp.orderDate);
+                $("input[name='requiredDate']").val(resp.requiredDate);
+                $("input[name='shippedDate']").val(resp.shippedDate);
+                $("input[name='feight']").val(resp.feight);
+                $("input[name='memberId']").val(resp.memberId);
+            }, (error) => {
+                sweetAlert.toast.error("Internal Server Error!");
+                console.error(error);
+            }
+        )
+
+        const form = $("form");
+        form.validate({
+            onfocusout: false,
+            onkeyup: false,
+            onclick: false,
+            errorClass: 'is-invalid',
+            validClass: 'is-valid',
+            rules: {
+                "orderId": {
+                    required: true,
+                },
+                "orderDate": {
+                    required: false,
+                },
+                "requiredDate": {
+                    required: true,
+                },
+                "shippedDate": {
+                    required: false,
+                },
+                "feight": {
+                    required: false,
+                },
+                "memberId": {
+                    required: true,
+                }
+            }
+        });
+
+        form.submit(function (event) {
+            event.preventDefault();
+            if (form.valid()) {
+                const payload = {
+                    "orderDate": event.currentTarget[1].value,
+                    "requiredDate": event.currentTarget[2].value,
+                    "shippedDate": event.currentTarget[3].value,
+                    "feight": event.currentTarget[4].value,
+                    "memberId": event.currentTarget[5].value,
+                }
+                app.orders.update(id, payload).subscribe(
+                    (resp) => {
+                        sweetAlert.toast.success("Edit order successfully!");
+                        window.location.href = '../orders';
+                    }, (err) => {
+                        sweetAlert.toast.error("Server is error!");
+                        console.error(error);
+                    } 
+                )
+            }
+
+        });
+    </script>
+}

@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "OrderDetail";
 }
 
@@ -7,7 +6,7 @@
 
 <div>
     <h4>Order</h4>
-    <hr/>
+    <hr />
     <dl class="row">
         <dt class="col-sm-2">Id</dt>
         <dd class="col-sm-10" id="orderId"></dd>
@@ -22,24 +21,66 @@
         <dt class="col-sm-2">Member Id</dt>
         <dd class="col-sm-10" id="memberId"></dd>
         <dt class="col-sm-2">OrderDetail</dt>
-        <dd class="col-sm-10" id="orderDetail">
+        <dd class="col-sm-10">
             <table class="table">
                 <thead>
-                <tr>
-                    <th>ProductId</th>
-                    <th>UnitPrice</th>
-                    <th>Quantity</th>
-                    <th>Discount</th>
-                    <th></th>
-                </tr>
+                    <tr>
+                        <th>ProductId</th>
+                        <th>UnitPrice</th>
+                        <th>Quantity</th>
+                        <th>Discount</th>
+                        <th></th>
+                    </tr>
                 </thead>
-                <tbody>
+                <tbody id="orderDetailBody">
                 </tbody>
             </table>
         </dd>
     </dl>
 </div>
 <div>
-    <a href="../edit">Edit</a>
-    <a href="../">Back to List</a>
+    <a id="edit">Edit</a>
+    <a href="../orders">Back to List</a>
 </div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            let searchParams = new URLSearchParams(window.location.search);
+            const id = searchParams.get("id");
+            app.orders.getById(id).subscribe(
+                (resp) => {
+                    $("#orderId").text(resp.orderId);
+                    $("#orderDate").text(resp.orderDate);
+                    $("#requiredDate").text(resp.requiredDate);
+                    $("#shippedDate").text(resp.shippedDate);
+                    $("#feight").text(resp.feight);
+                    $("#memberId").text(resp.memberId);
+                    const html = resp.orderDetails.reduce((acc, cur) => {
+                        return acc += `
+                                        <tr>
+                                            <td>
+                                                ${cur.productId}
+                                            </td>
+                                            <td>
+                                                ${cur.unitPrice}
+                                            </td>
+                                            <td>
+                                                ${cur.quantity}
+                                            </td>
+                                            <td>
+                                                ${cur.discount}
+                                            </td>
+                                        </tr>`
+                    }, '');
+                    $("#orderDetailBody").html(html);
+                    $("#edit").attr("href", `edit?id=${id}`)
+                }, (error) => {
+                    sweetAlert.toast.error("Internal Server Error!");
+                    console.error(error);
+                }
+            )
+        });
+    </script>
+}

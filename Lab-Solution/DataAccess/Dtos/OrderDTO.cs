@@ -10,10 +10,8 @@ namespace DataAccess.Dtos
 {
     public class OrderDTO
     {
-        [Required]
-        public string MemberId { get; set; } = null!;
         public DateTime? RequiredDate { get; set; }
-        public ICollection<OrderDetailDTO> orderDetailDTOs { get; set; } = null!;
+        public ICollection<OrderDetailDTO> OrderDetailDTOs { get; set; } = null!;
 
     }
 }

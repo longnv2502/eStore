@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
 using BussinessObject.Models;
+using DataAccess.Dtos;
 using DataAccess.IRepository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
+using Microsoft.AspNetCore.OData.Routing.Controllers;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using System.Security.Principal;
@@ -28,6 +31,7 @@ namespace ApiServer.Controller
             _logger = logger;
             _mapper = mapper;
         }
+
 
         [HttpGet]
         [Route("")]
@@ -58,7 +62,8 @@ namespace ApiServer.Controller
             return Ok(products);
         }
 
-        [HttpPost, Authorize(Roles = "ADMINISTRATOR")]
+        [HttpPost]
+        //[Authorize(Roles = "ADMINISTRATOR")]
         [Route("")]
         public async Task<IActionResult> Insert([FromBody] Product product)
         {
@@ -67,16 +72,21 @@ namespace ApiServer.Controller
             return Ok(product);
         }
 
-        [HttpPut, Authorize(Roles = "ADMINISTRATOR")]
-        [Route("")]
-        public async Task<IActionResult> Update([FromBody] Product product)
+        [HttpPut]
+        //[Authorize(Roles = "ADMINISTRATOR")]
+        [Route("{id:int}")]
+        public async Task<IActionResult> Update(int id, [FromBody] ProductDto payload)
         {
+            var product = await _unitOfWork.Products.Get(p => p.ProductId == id);
+            var updateValue = _mapper.Map<Product>(payload);
+            product.SetValue(updateValue);
             _unitOfWork.Products.Update(product);
             await _unitOfWork.Save();
             return Ok(product);
         }
 
-        [HttpPatch, Authorize(Roles = "ADMINISTRATOR")]
+        [HttpPatch]
+        //[Authorize(Roles = "ADMINISTRATOR")]
         [Route("{id:int}")]
         public async Task<IActionResult> Patch(int id, [FromBody] JsonPatchDocument patch)
         {
@@ -84,7 +94,8 @@ namespace ApiServer.Controller
             return Ok(product);
         }
 
-        [HttpDelete, Authorize(Roles = "ADMINISTRATOR")]
+        [HttpDelete]
+        //[Authorize(Roles = "ADMINISTRATOR")]
         [Route("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {

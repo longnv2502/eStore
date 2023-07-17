@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ApiServer.Controller
@@ -19,6 +20,7 @@ namespace ApiServer.Controller
     public class AuthController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<AuthController> _logger;
         private readonly IMapper _mapper;
         private readonly IAuthManager _authManager;

@@ -534,3 +534,8 @@ C:\Users\dclon\OneDrive - 1gtfy6\Documents\FPT_University\23_SUM\PRN231\Project\
 C:\Users\dclon\OneDrive - 1gtfy6\Documents\FPT_University\23_SUM\PRN231\Project\Lab2\Lab-Solution\ApiServer\bin\Debug\net6.0\Scrutor.dll
 C:\Users\dclon\OneDrive - 1gtfy6\Documents\FPT_University\23_SUM\PRN231\Project\Lab2\Lab-Solution\ApiServer\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.dll
 C:\Users\dclon\OneDrive - 1gtfy6\Documents\FPT_University\23_SUM\PRN231\Project\Lab2\Lab-Solution\ApiServer\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
+C:\Users\dclon\OneDrive - 1gtfy6\Documents\FPT_University\23_SUM\PRN231\Project\Lab2\Lab-Solution\ApiServer\bin\Debug\net6.0\Microsoft.AspNetCore.OData.dll
+C:\Users\dclon\OneDrive - 1gtfy6\Documents\FPT_University\23_SUM\PRN231\Project\Lab2\Lab-Solution\ApiServer\bin\Debug\net6.0\Microsoft.OData.Core.dll
+C:\Users\dclon\OneDrive - 1gtfy6\Documents\FPT_University\23_SUM\PRN231\Project\Lab2\Lab-Solution\ApiServer\bin\Debug\net6.0\Microsoft.OData.Edm.dll
+C:\Users\dclon\OneDrive - 1gtfy6\Documents\FPT_University\23_SUM\PRN231\Project\Lab2\Lab-Solution\ApiServer\bin\Debug\net6.0\Microsoft.OData.ModelBuilder.dll
+C:\Users\dclon\OneDrive - 1gtfy6\Documents\FPT_University\23_SUM\PRN231\Project\Lab2\Lab-Solution\ApiServer\bin\Debug\net6.0\Microsoft.Spatial.dll

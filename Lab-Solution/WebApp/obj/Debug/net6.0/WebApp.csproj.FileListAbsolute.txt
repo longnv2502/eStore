@@ -515,3 +515,4 @@ C:\Users\LONGNV\OneDrive - 1gtfy6\Documents\FPT_University\23_SUM\PRN231\Project
 C:\Users\LONGNV\OneDrive - 1gtfy6\Documents\FPT_University\23_SUM\PRN231\Project\Lab2\Lab-Solution\WebApp\obj\Debug\net6.0\WebApp.genruntimeconfig.cache
 C:\Users\LONGNV\OneDrive - 1gtfy6\Documents\FPT_University\23_SUM\PRN231\Project\Lab2\Lab-Solution\WebApp\obj\Debug\net6.0\ref\WebApp.dll
 C:\Users\dclon\OneDrive - 1gtfy6\Documents\FPT_University\23_SUM\PRN231\Project\Lab2\Lab-Solution\WebApp\bin\Debug\net6.0\libman.json
+C:\Users\LONGNV\OneDrive - 1gtfy6\Documents\FPT_University\23_SUM\PRN231\Project\Lab2\Lab-Solution\WebApp\bin\Debug\net6.0\libman.json

@@ -1,0 +1,95 @@
+﻿@page
+@{
+    //ViewData["Title"] = "Checkout";
+}
+
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>Checkout Detail</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Your cart</span>
+                <span class="badge badge-secondary badge-pill">3</span>
+            </h4>
+            <ul class="list-group mb-3 sticky-top" id="items">
+            </ul>
+        </div>
+        <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">Billing address</h4>
+            <form method="post" class="needs-validation" action="" novalidate="">
+                <div class="mb-3">
+                    <label for="ciscountVoucher">Discount Voucher</label>
+                    <input type="text" class="form-control" id="RequiredDate" name="ciscountVoucher">
+                </div>
+                <div class="mb-3">
+                    <label for="requiredDate">Required Date</label>
+                    <input type="datetime-local" class="form-control" id="requiredDate" name="requiredDate">
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="save-info">
+                    <label class="custom-control-label" for="save-info">Save this information for next time</label>
+                </div>
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Buy now</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        app.cart.groupItemCarts();
+        const carts = app.cart.getCart();
+        let totalPrice = 0;
+
+        const render = (_carts) => {
+            totalPrice = 0;
+            let html = _carts.reduce((acc, cur) => {
+                totalPrice += cur.product.unitPrice * cur.quantity;
+                return acc += `
+                                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                        <div>
+                                            <h6 class="my-0">${cur.product.productName}(x${cur.quantity})</h6>
+                                            <small class="text-muted">${cur.product.category.categoryName}</small>
+                                        </div>
+                                        <span class="text-muted">${cur.product.unitPrice}</span>
+                                    </li>
+                                    `
+            }, '');
+            html += `<li class="list-group-item d-flex justify-content-between">
+                                    <span>Total (USD)</span>
+                                    <strong>${totalPrice}$</strong>
+                                </li>`
+            $("#items").html(html);
+        }
+
+        render(carts);
+
+        const form = $("form");
+        form.submit(function (event) {
+            event.preventDefault();
+            const payload = {
+                requiredDate: event.currentTarget[1].value,
+                orderDetailDTOs: carts.map(
+                    item => ({
+                        productId: item.product.productId,
+                        unitPrice: item.product.unitPrice,
+                        quantity: item.quantity,
+                        discount: 0
+                    }))
+            };
+            app.orders.insert(JSON.stringify(payload)).subscribe(
+                (resp) => {
+                    app.cart.clear();
+                    app.cart.save();
+                    render([]);
+                    sweetAlert.toast.success("Order successfully!");
+                }, (err) => {
+                    sweetAlert.toast.error("Internal Server Error!");
+                }
+            )
+        });
+    </script>
+}

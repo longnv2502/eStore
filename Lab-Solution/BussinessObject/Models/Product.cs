@@ -28,5 +28,15 @@ namespace BussinessObject.Models
         public virtual Category Category { get; set; } = null!;
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 
+        public Product SetValue(Product value)
+        {
+            ProductName = value.ProductName;
+            _ = value.Weight != null ? Weight = value.Weight : null;
+            _ = value.UnitPrice != null ? UnitPrice = value.UnitPrice : null;
+            _ = value.UnitsInStock != null ? UnitsInStock = value.UnitsInStock : null;
+            CategoryId = value.CategoryId;
+            return this;
+        }
+
     }
 }

@@ -31,6 +31,7 @@ namespace ApiServer.Controller
 
         [HttpGet]
         [Route("")]
+        [Authorize]
         public async Task<IActionResult> GetAll()
         {
             var users = await _userManager.Users.ToListAsync();
@@ -45,15 +46,17 @@ namespace ApiServer.Controller
             return Ok(user);
         }
 
-        [HttpPost, Authorize(Roles = "ADMINISTRATOR")]
-        [Route("")]
-        public async Task<IActionResult> Update([FromBody] ApplicationUser user)
+        [HttpPost]
+        //[Authorize(Roles = "ADMINISTRATOR")]
+        [Route("{id}")]
+        public async Task<IActionResult> Update(string id, [FromBody] ApplicationUser user)
         {
             await _userManager.UpdateAsync(user);
             return Ok(user);
         }
 
-        [HttpDelete, Authorize(Roles = "ADMINISTRATOR")]
+        [HttpDelete]
+        //[Authorize(Roles = "ADMINISTRATOR")]
         [Route("{id}")]
         public async Task<IActionResult> Delete(string id)
         {

@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\js\\sweetalert.js",
+      "PackagePath": "staticwebassets\\js\\sweetalert.js"
+    },
+    {
       "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
@@ -369,6 +373,326 @@
       "PackagePath": "staticwebassets\\lib\\font-awesome\\webfonts\\fa-v4compatibility.woff2"
     },
     {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\index.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\index.bundle.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\index.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\index.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\index.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\index.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\index.umd.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\index.umd.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\index.umd.min.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\index.umd.min.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\jwe\\compact\\decrypt.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\jwe\\compact\\decrypt.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\jwe\\compact\\encrypt.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\jwe\\compact\\encrypt.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\jwe\\flattened\\decrypt.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\jwe\\flattened\\decrypt.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\jwe\\flattened\\encrypt.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\jwe\\flattened\\encrypt.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\jwe\\general\\decrypt.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\jwe\\general\\decrypt.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\jwe\\general\\encrypt.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\jwe\\general\\encrypt.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\jwk\\embedded.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\jwk\\embedded.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\jwk\\thumbprint.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\jwk\\thumbprint.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\jwks\\local.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\jwks\\local.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\jwks\\remote.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\jwks\\remote.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\jws\\compact\\sign.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\jws\\compact\\sign.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\jws\\compact\\verify.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\jws\\compact\\verify.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\jws\\flattened\\sign.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\jws\\flattened\\sign.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\jws\\flattened\\verify.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\jws\\flattened\\verify.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\jws\\general\\sign.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\jws\\general\\sign.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\jws\\general\\verify.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\jws\\general\\verify.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\jwt\\decrypt.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\jwt\\decrypt.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\jwt\\encrypt.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\jwt\\encrypt.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\jwt\\produce.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\jwt\\produce.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\jwt\\sign.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\jwt\\sign.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\jwt\\unsecured.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\jwt\\unsecured.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\jwt\\verify.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\jwt\\verify.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\key\\export.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\key\\export.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\key\\generate_key_pair.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\key\\generate_key_pair.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\key\\generate_secret.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\key\\generate_secret.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\key\\import.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\key\\import.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\lib\\aesgcmkw.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\lib\\aesgcmkw.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\lib\\buffer_utils.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\lib\\buffer_utils.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\lib\\cek.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\lib\\cek.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\lib\\check_iv_length.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\lib\\check_iv_length.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\lib\\check_key_type.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\lib\\check_key_type.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\lib\\check_p2s.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\lib\\check_p2s.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\lib\\crypto_key.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\lib\\crypto_key.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\lib\\decrypt_key_management.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\lib\\decrypt_key_management.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\lib\\encrypt_key_management.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\lib\\encrypt_key_management.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\lib\\epoch.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\lib\\epoch.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\lib\\format_pem.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\lib\\format_pem.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\lib\\invalid_key_input.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\lib\\invalid_key_input.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\lib\\is_disjoint.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\lib\\is_disjoint.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\lib\\is_object.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\lib\\is_object.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\lib\\iv.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\lib\\iv.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\lib\\jwt_claims_set.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\lib\\jwt_claims_set.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\lib\\secs.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\lib\\secs.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\lib\\validate_algorithms.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\lib\\validate_algorithms.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\lib\\validate_crit.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\lib\\validate_crit.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\aeskw.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\aeskw.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\asn1.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\asn1.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\base64url.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\base64url.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\bogus.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\bogus.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\check_cek_length.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\check_cek_length.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\check_key_length.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\check_key_length.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\decrypt.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\decrypt.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\digest.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\digest.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\ecdhes.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\ecdhes.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\encrypt.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\encrypt.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\fetch_jwks.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\fetch_jwks.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\generate.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\generate.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\get_sign_verify_key.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\get_sign_verify_key.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\is_key_like.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\is_key_like.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\jwk_to_key.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\jwk_to_key.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\key_to_jwk.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\key_to_jwk.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\pbes2kw.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\pbes2kw.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\random.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\random.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\rsaes.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\rsaes.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\sign.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\sign.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\subtle_dsa.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\subtle_dsa.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\subtle_rsaes.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\subtle_rsaes.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\timing_safe_equal.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\timing_safe_equal.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\verify.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\verify.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\webcrypto.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\webcrypto.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\runtime\\zlib.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\runtime\\zlib.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\util\\base64url.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\util\\base64url.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\util\\decode_jwt.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\util\\decode_jwt.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\util\\decode_protected_header.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\util\\decode_protected_header.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jose\\util\\errors.js",
+      "PackagePath": "staticwebassets\\lib\\jose\\util\\errors.js"
+    },
+    {
       "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
@@ -415,6 +739,34 @@
     {
       "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\sweetalert2\\sweetalert2.all.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert2\\sweetalert2.all.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\sweetalert2\\sweetalert2.all.min.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert2\\sweetalert2.all.min.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\sweetalert2\\sweetalert2.css",
+      "PackagePath": "staticwebassets\\lib\\sweetalert2\\sweetalert2.css"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\sweetalert2\\sweetalert2.d.ts",
+      "PackagePath": "staticwebassets\\lib\\sweetalert2\\sweetalert2.d.ts"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\sweetalert2\\sweetalert2.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert2\\sweetalert2.js"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\sweetalert2\\sweetalert2.min.css",
+      "PackagePath": "staticwebassets\\lib\\sweetalert2\\sweetalert2.min.css"
+    },
+    {
+      "Id": "C:\\Users\\dclon\\OneDrive - 1gtfy6\\Documents\\FPT_University\\23_SUM\\PRN231\\Project\\Lab2\\Lab-Solution\\WebApp\\wwwroot\\lib\\sweetalert2\\sweetalert2.min.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert2\\sweetalert2.min.js"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.WebApp.Microsoft.AspNetCore.StaticWebAssets.props",

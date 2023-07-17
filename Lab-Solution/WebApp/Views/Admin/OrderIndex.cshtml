@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "OrderIndex";
 }
 
@@ -23,3 +22,74 @@
     <tbody>
     </tbody>
 </table>
+
+@section Scripts {
+    <script>
+        const tbody = $("tbody");
+        let orders = [];
+
+        app.orders.getAll().subscribe(
+            (resp) => {
+                orders = resp;
+                render();
+            }, (error) => {
+                sweetAlert.toast.error("Internal Server Error!");
+                console.error(error);
+            }
+        );
+
+        const deleteItem = (id) => {
+            sweetAlert.alert.confirm({
+                title: 'Do you want to delete this order?',
+                text: 'You will not be able to recover this order! Are you sure you want to delete it?'
+            }).then((isConfirm) => {
+                if (isConfirm.value) {
+                    app.orders.delete(id).subscribe(
+                        (res) => {
+                            const removeIndex = orders.findIndex(item => item.orderId === id);
+                            removeIndex !== -1 && orders.splice(removeIndex, 1);
+                            render();
+                        }, (error) => {
+                            sweetAlert.toast.error("Internal Server Error!");
+                            console.error(error);
+                        }
+                    )
+                }
+            });
+        }
+
+        const render = () => {
+            let html = '';
+            orders.forEach((item) => {
+                html += `
+                                    <tr>
+                                        <td>
+                                            ${item.orderId}
+                                        </td>
+                                        <td>
+                                            ${item.orderDate}
+                                        </td>
+                                        <td>
+                                            ${item.requiredDate}
+                                        </td>
+                                        <td>
+                                            ${item.shippedDate}
+                                        </td>
+                                        <td>
+                                            ${item.feight}
+                                        </td>
+                                        <td>
+                                            ${item.memberId}
+                                        </td>
+                                        <td>
+                                            <a href="orders/edit?id=${item.orderId}"><button class="btn btn-secondary">Edit</button></a>
+                                                    <a href="orders/detail?id=${item.orderId}"><button class="btn btn-info">Details</button></a>
+                                            <button class="btn btn-danger" onclick="deleteItem(${item.orderId})">Delete</button>
+                                        </td>
+                                    </tr>
+                                    `;
+            });
+            tbody.html(html);
+        }
+    </script>
+}

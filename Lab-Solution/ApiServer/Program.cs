@@ -4,30 +4,34 @@ using DataAccess.Repository;
 using DataAccess.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 using System.Configuration;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 var _jwtSettings = builder.Configuration.GetSection("Jwt");
+builder.Services.AddControllers();
+builder.Services.AddHttpContextAccessor();
 
 // Logging
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 // Add services to the container.
 
-builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
 // Configuration Cors
-builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+//builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
 builder.Services.AddCors(c =>
 {
     c.AddPolicy("AllowOrigin", option => option.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
@@ -36,7 +40,7 @@ builder.Services.AddCors(c =>
 // Configuration Swagger
 builder.Services.AddSwaggerGen(options =>
 {
-    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
     {
         Description = @"JWT Authorization header using the Bearer scheme. 
                       Enter 'Bearer' [space] and then your token in the text input below.
@@ -48,6 +52,7 @@ builder.Services.AddSwaggerGen(options =>
     });
 
     options.OperationFilter<SecurityRequirementsOperationFilter>();
+
 });
 
 // Connect Identity
@@ -55,11 +60,13 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<EStoreContext>().AddDefaultTokenProviders()
     .AddTokenProvider(_jwtSettings.GetSection("Issuer").Value, typeof(DataProtectorTokenProvider<ApplicationUser>));
 builder.Services.AddIdentityCore<ApplicationUser>(q => { q.User.RequireUniqueEmail = true; });
+
+// Connect Jwt
 builder.Services.AddAuthentication(o =>
             {
                 o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                o.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                //o.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             })
             .AddJwtBearer(o =>
             {
@@ -75,7 +82,11 @@ builder.Services.AddAuthentication(o =>
             });
 
 // Connect Database
-builder.Services.AddDbContext<EStoreContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("DB")));
+builder.Services.AddDbContext<EStoreContext>(option =>
+{
+    option.UseSqlServer(builder.Configuration.GetConnectionString("DB"));
+    option.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+});
 
 // Service Json
 builder.Services.AddControllersWithViews().AddNewtonsoftJson(
@@ -103,6 +114,8 @@ app.UseCors(x => x
     .AllowAnyHeader());
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

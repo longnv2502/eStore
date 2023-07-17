@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "ProductIndex";
 }
 
@@ -26,75 +25,70 @@
 
 @section Scripts {
     <script>
-        console.log("Test")
-        const app = appClient();
         const tbody = $("tbody");
         let products = [];
 
-
-        ; (function () {
-            console.log("Test2")
-            app.products.getAll().subscribe(
-                (resp) => {
-                    console.log(resp);
-                    products = resp;
-                    console.log(products);
-                    render();
-                }, (error) => {
-                    alert("Server is error!");
-                    console.error(error);
-                }
-            );
-        })();
+        app.products.getAll().subscribe(
+            (resp) => {
+                products = resp;
+                render();
+            }, (error) => {
+                sweetAlert.toast.error("Server is error!");
+                console.error(error);
+            }
+        );
 
         const deleteItem = (id) => {
-            if (confirm('Are You Sure?')) {
-                app.products.delete(id).subscribe(
-                    (res) => {
-                        const removeIndex = products.findIndex(item => item.ProductId === id);
-                        removeIndex && products.splice(removeIndex, 1);
-                        render();
-                    }, (error) => {
-                        alert("Server is error!");
-                        console.error(error);
-                    }
-                )
-            }
+            sweetAlert.alert.confirm({
+                title: 'Do you want to delete this product?',
+                text: 'You will not be able to recover this product! Are you sure you want to delete it?'
+            }).then((isConfirm) => {
+                if (isConfirm.value) {
+                    app.products.delete(id).subscribe(
+                        (res) => {
+                            const removeIndex = products.findIndex(item => item.productId === id);
+                            removeIndex !== -1 && products.splice(removeIndex, 1);
+                            render();
+                        }, (error) => {
+                            sweetAlert.toast.error("Internal Server Error!");
+                            console.error(error);
+                        }
+                    )
+                }
+            });
         }
 
         const render = () => {
             let html = '';
-            products.forEach((item) => 
-            {
+            products.forEach((item) => {
                 html += `
-                    <tr>
-                        <td>
-                            ${item.productId}
-                        </td>
-                        <td>
-                            ${item.productName}
-                        </td>
-                        <td>
-                            ${item.weight}
-                        </td>
-                        <td>
-                            ${item.unitPrice}
-                        </td>
-                        <td>
-                            ${item.unitsInStock}
-                        </td>
-                        <td>
-                            ${item.categoryId}
-                        </td>
-                        <td>
-                            <a href="./edit/${item.productId}"><button class="btn btn-secondary">Edit</button></a>
-                            <a href="./details/${item.productId}"><button class="btn btn-info">Details</button></a>
-                            <button class="btn btn-danger" onclick="deleteItem(${item.productId})">Delete</button>
-                        </td>
-                    </tr>
-                    `;
+                                    <tr>
+                                        <td>
+                                            ${item.productId}
+                                        </td>
+                                        <td>
+                                            ${item.productName}
+                                        </td>
+                                        <td>
+                                            ${item.weight}
+                                        </td>
+                                        <td>
+                                            ${item.unitPrice}
+                                        </td>
+                                        <td>
+                                            ${item.unitsInStock}
+                                        </td>
+                                        <td>
+                                            ${item.categoryId}
+                                        </td>
+                                        <td>
+                                            <a href="products/edit?id=${item.productId}"><button class="btn btn-secondary">Edit</button></a>
+                                            <a href="products/detail?id=${item.productId}"><button class="btn btn-info">Details</button></a>
+                                            <button class="btn btn-danger" onclick="deleteItem(${item.productId})">Delete</button>
+                                        </td>
+                                    </tr>
+                                    `;
             });
-            console.log(html);
             tbody.html(html);
         }
     </script>

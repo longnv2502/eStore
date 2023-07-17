@@ -1,6 +1,4 @@
-﻿
-var appClient = () => {
-    console.log(JSON.parse(atob("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c")));
+﻿var appClient = () => {
     const localStorage = window.localStorage;
     let tokenRequest = {};
     let cart = [];
@@ -12,7 +10,8 @@ var appClient = () => {
         DELETE: 'DELETE',
     };
 
-    const BASE_DOMAIN = 'https://localhost:5000/api';
+    const API_BASE_DOMAIN = 'https://localhost:5000/api';
+    const WEB_BASE_DOMAIN = 'https://localhost:9000';
 
     const PATH = {
         AUTH: 'auth',
@@ -24,47 +23,74 @@ var appClient = () => {
 
     const ENDPOINT = {
         REGISTER: 'register',
+        LOGIN: 'login',
     };
 
+    const groupItemCarts = () => {
+        const _cart = cart.reduce((acc, cur) => {
+            console.log(acc);
+            const findIndex = acc.findIndex(item => item.product.productId === cur.product.productId);
+            if (findIndex !== -1) {
+                acc[findIndex].quantity += cur.quantity;
+                return acc;
+            }
+            acc.push(cur);
+            return acc
+        }, [])
+        cart = _cart;
+    }
+
     const request = (url, method, payload) => {
+        if (method === METHOD.POST || method === METHOD.PUT) {
+            payload = JSON.stringify(payload);
+        }
         return {
             subscribe: (success, error) => {
                 $.ajax({
                     url: url,
                     method: method,
+                    headers: {
+                        "Authorization": `Bearer ${tokenRequest}`
+                    },
                     data: payload,
                     success: success,
+                    contentType: "application/json",
                     error: error
                 });
             }
         }
     };
 
+    const parseJwt = () => {
+        return JSON.parse(Buffer.from(tokenRequest.split('.')[1], 'base64').toString());
+    };
+
+
     ; (function () {
         cart = JSON.parse(localStorage.getItem("cart")) ?? [];
-        tokenRequest = JSON.parse(localStorage.getItem("token")) ?? {};
+        tokenRequest = localStorage.getItem("token") ?? '';
     })()
 
     const initRestful = (path) => {
         return {
             getAll: () => {
-                return request(`${BASE_DOMAIN}/${path}`, METHOD.GET);
+                return request(`${API_BASE_DOMAIN}/${path}`, METHOD.GET);
             },
 
             getById: (id) => {
-                return request(`${BASE_DOMAIN}/${path}/${id}`, METHOD.GET);
+                return request(`${API_BASE_DOMAIN}/${path}/${id}`, METHOD.GET);
             },
 
-            insert: (id, payload) => {
-                return request(`${BASE_DOMAIN}/${path}/${id}`, METHOD.POST, payload);
+            insert: (payload) => {
+                return request(`${API_BASE_DOMAIN}/${path}`, METHOD.POST, payload);
             },
 
             update: (id, payload) => {
-                return request(`${BASE_DOMAIN}/${path}/${id}`, METHOD.PUT, payload);
+                return request(`${API_BASE_DOMAIN}/${path}/${id}`, METHOD.PUT, payload);
             },
 
             delete: (id) => {
-                return request(`${BASE_DOMAIN}/${path}/${id}`, METHOD.DELETE);
+                return request(`${API_BASE_DOMAIN}/${path}/${id}`, METHOD.DELETE);
             },
         }
     }
@@ -86,13 +112,31 @@ var appClient = () => {
                 cart = [];
             },
             save: () => {
-                localStorage.setItem("cart", cart);
+                localStorage.setItem("cart", JSON.stringify(cart));
+            },
+            groupItemCarts: () => {
+                groupItemCarts();
+                localStorage.setItem("cart", JSON.stringify(cart));
             },
         },
         auth: {
-            register: (payload) => {
-                return request(`${BASE_DOMAIN}/${PATH.AUTH}/${ENDPOINT.REGISTER}`, METHOD.POST, payload)
+            login: (payload) => {
+                return request(`${WEB_BASE_DOMAIN}/${PATH.AUTH}/${ENDPOINT.LOGIN}`, METHOD.POST, payload)
             },
+            register: (payload) => {
+                return request(`${API_BASE_DOMAIN}/${PATH.AUTH}/${ENDPOINT.REGISTER}`, METHOD.POST, payload)
+            },
+            saveToken: (token) => {
+                localStorage.setItem("token", token);
+                tokenRequest = token;
+            },
+            clearToken: () => {
+                localStorage.removeItem("token");
+                tokenRequest = '';
+            },
+            isAuthenticated: () => {
+                return tokenRequest !== '';
+            }
         },
 
         categories: {

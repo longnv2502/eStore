@@ -4,7 +4,12 @@ using DataAccess.IRepository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Formatter;
+using Microsoft.AspNetCore.OData.Query;
+using Microsoft.AspNetCore.OData.Results;
+using Microsoft.AspNetCore.OData.Routing.Controllers;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing.Printing;
 
 namespace ApiServer.Controller
 {
@@ -26,6 +31,7 @@ namespace ApiServer.Controller
 
         [HttpGet]
         [Route("")]
+        [Authorize]
         public async Task<IActionResult> GetAll()
         {
             var categories = await _unitOfWork.Categories.GetAll(include: act => act.Include(c => c.Products));
@@ -40,7 +46,8 @@ namespace ApiServer.Controller
             return Ok(category);
         }
 
-        [HttpPost, Authorize(Roles = "ADMINISTRATOR")]
+        [HttpPost]
+        //[Authorize(Roles = "ADMINISTRATOR")]
         [Route("")]
         public async Task<IActionResult> Insert([FromBody] Category category)
         {
@@ -49,16 +56,18 @@ namespace ApiServer.Controller
             return Ok(category);
         }
 
-        [HttpPut, Authorize(Roles = "ADMINISTRATOR")]
-        [Route("")]
-        public async Task<IActionResult> Update([FromBody] Category category)
+        [HttpPut]
+        //[Authorize(Roles = "ADMINISTRATOR")]
+        [Route("{id:int}")]
+        public async Task<IActionResult> Update(int id, [FromBody] Category category)
         {
             _unitOfWork.Categories.Update(category);
             await _unitOfWork.Save();
             return Ok(category);
         }
 
-        [HttpDelete, Authorize(Roles = "ADMINISTRATOR")]
+        [HttpDelete]
+        //[Authorize(Roles = "ADMINISTRATOR")]
         [Route("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {

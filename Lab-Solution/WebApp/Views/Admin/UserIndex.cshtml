@@ -8,14 +8,79 @@
     <thead>
     <tr>
         <th>Id</th>
-        <th>OrderDate</th>
-        <th>RequiredDate</th>
-        <th>ShippedDate</th>
-        <th>Feight</th>
-        <th>MemberId</th>
+        <th>Email</th>
+        <th>Name</th>
+        <th>PhoneNumber</th>
         <th>Action</th>
     </tr>
     </thead>
     <tbody>
     </tbody>
 </table>
+
+@section Scripts {
+    <script>
+        const tbody = $("tbody");
+        let users = [];
+
+        ; (function () {
+            app.users.getAll().subscribe(
+                (resp) => {
+                    users = resp;
+                    render();
+                }, (error) => {
+                    sweetAlert.toast.error("Server is error!");
+                    console.error(error);
+                }
+            );
+        })();
+
+        const deleteItem = (id) => {
+            sweetAlert.alert.confirm({
+                title: 'Do you want to delete this user?',
+                text: 'You will not be able to recover this user! Are you sure you want to delete it?'
+            }).then((isConfirm) => {
+                if (isConfirm.value) {
+                    app.users.delete(id).subscribe(
+                        (res) => {
+                            const removeIndex = users.findIndex(item => item.id === id);
+                            removeIndex && users.splice(removeIndex, 1);
+                            render();
+                        }, (error) => {
+                            sweetAlert.toast.error("Server is error!");
+                            console.error(error);
+                        }
+                    )
+                }
+            });
+        }
+
+        const render = () => {
+            let html = '';
+            users.forEach((item) => {
+                html += `
+                            <tr>
+                                <td>
+                                    ${item.id}
+                                </td>
+                                <td>
+                                    ${item.email}
+                                </td>
+                                <td>
+                                    ${item.firstName} ${item.lastName}
+                                </td>
+                                <td>
+                                    ${item.phoneNumber}
+                                </td>
+                                <td>
+                                    <a href="./edit/${item.id}"><button class="btn btn-secondary">Edit</button></a>
+                                    <a href="./details/${item.id}"><button class="btn btn-info">Details</button></a>
+                                    <button class="btn btn-danger" onclick="deleteItem(${item.id})">Delete</button>
+                                </td>
+                            </tr>
+                            `;
+            });
+            tbody.html(html);
+        }
+    </script>
+}
