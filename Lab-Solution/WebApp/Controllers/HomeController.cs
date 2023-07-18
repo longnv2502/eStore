@@ -30,6 +30,30 @@ namespace WebApp.Controllers
             return View();
         }
 
+        [Route("profile")]
+        public IActionResult Profile()
+        {
+            return View();
+        }
+
+        [Route("profile/edit")]
+        public IActionResult ProfileEdit()
+        {
+            return View();
+        }
+
+        [Route("history")]
+        public IActionResult HistoryOrder()
+        {
+            return View();
+        }
+
+        [Route("history/detail")]
+        public IActionResult HistoryOrderDetail()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

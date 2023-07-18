@@ -3,34 +3,94 @@
 }
 
 <h3>All Pizzas</h3>
+<div class="w-100">
+    <form method="get">
+        <table class="form-actions no-color w-100" style="border-collapse:separate;border-spacing:0 8px;">
+            <colgroup>
+                <col width="20%">
+                <col>
+            </colgroup>
+            <tr>
+                <td><label class="form-label" for="searchId">Search By Id</label></td>
+                <td><input type="text" id="searchId" name="searchId" class="form-control" /></td>
+            </tr>
+            <tr>
+                <td><label class="form-label" for="searchName">Search By Name</label></td>
+                <td> <input type="text" id="searchName" name="searchName" class="form-control" /></td>
+            </tr>
+            <tr>
+                <td><label class="form-label" for="uniPriceFrom">Filter By Min UnitPrice</label></td>
+                <td><input type="text" id="uniPriceFrom" name="unitPriceMin" class="form-control" /></td>
+            </tr>
+            <tr>
+                <td><label class="form-label" for="uniPriceTo">Filter By Max UnitPrice</label></td>
+                <td><input type="text" id="uniPriceTo" name="unitPriceMax" class="form-control" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Filter" class="btn round-black-btn" /></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</hr>
 <div class="container d-grid grid gap-5" style="grid-template-columns: repeat(3, 1fr)" id="container">
 </div>
 
 @section Scripts {
     <script>
         let products = [];
-        app.products.getAll().subscribe(
-            (resp) => {
-                products = resp;
-                const html = products.reduce((accumulator, currentValue) => {
-                    return accumulator += 
+        const init = (query) => {
+            app.products.getAll(query).subscribe(
+                (resp) => {
+                    products = resp;
+                    render();
+                }, (error) => {
+                    console.error(error);
+                }
+            )
+        }
+
+        init();
+
+        const render = () => {
+            const html = products.reduce((accumulator, currentValue) => {
+                return accumulator +=
                     `
-                        <div class="card" style="width: 18rem;">
-                            <a class="nav-link text-dark" href="./products?id=${currentValue.productId}" style="border-bottom: 1px solid #ccc">
-                                <img class="card-img-top" src="https://vanphongphamtintuong.com/wp-content/uploads/woocommerce-placeholder.png" alt="Pizza image">
-                            </a>
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">${currentValue.productName}</h5>
-                                <h6 class="card-title text-primary">${currentValue.category.categoryName}</h6>
-                                <a href="./products?id=${currentValue.productId}" class="btn round-black-btn mt-auto">Add Pizza</a>
-                            </div>
-                        </div>
-                    `
-                }, '');
-                $('#container').html(html);
-            }, (error) => {
-                console.error(error);
+                                <div class="card" style="width: 18rem;">
+                                    <a class="nav-link text-dark" href="./products?id=${currentValue.productId}" style="border-bottom: 1px solid #ccc">
+                                        <img class="card-img-top" src="https://vanphongphamtintuong.com/wp-content/uploads/woocommerce-placeholder.png" alt="Pizza image">
+                                    </a>
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">${currentValue.productName}</h5>
+                                        <h6 class="card-title text-primary">${currentValue.category.categoryName}</h6>
+                                        <p class="card-text text-end">${currentValue.unitPrice} $</p>
+                                        <a href="./products?id=${currentValue.productId}" class="btn round-black-btn mt-auto">Add Pizza</a>
+                                    </div>
+                                </div>
+                            `
+            }, '');
+            $('#container').html(html);
+        }
+
+        $("form").submit(function (event) {
+            event.preventDefault();
+            const payload = {
+                "searchId": event.currentTarget[0].value,
+                "searchName": event.currentTarget[1].value,
+                "unitPriceMin": event.currentTarget[2].value,
+                "unitPriceMax": event.currentTarget[3].value,
             }
-        )
+            console.log(payload);
+            let query = '';
+            if (payload.searchId || payload.searchName || payload.unitPriceMin || payload.unitPriceMax) query += '?$filter=';
+            if (payload.searchId) query += `ProductId eq ${payload.searchId} and `;
+            if (payload.searchName) query += `contains(ProductName, '${payload.searchName}') and `;
+            if (payload.unitPriceMin) query += `UnitPrice gt ${payload.unitPriceMin} and `;
+            if (payload.unitPriceMax) query += `UnitPrice lt ${payload.unitPriceMax} and `;
+            query = query.trim().substring(0, query.length - 4);
+            console.log(query);
+            init(query);
+        })
     </script>
 }

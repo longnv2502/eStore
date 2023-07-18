@@ -20,8 +20,8 @@
             <h4 class="mb-3">Billing address</h4>
             <form method="post" class="needs-validation" action="" novalidate="">
                 <div class="mb-3">
-                    <label for="ciscountVoucher">Discount Voucher</label>
-                    <input type="text" class="form-control" id="RequiredDate" name="ciscountVoucher">
+                    <label for="discountVoucher">Discount Voucher</label>
+                    <input type="text" class="form-control" id="discountVoucher" name="discountVoucher">
                 </div>
                 <div class="mb-3">
                     <label for="requiredDate">Required Date</label>
@@ -59,9 +59,9 @@
                                     `
             }, '');
             html += `<li class="list-group-item d-flex justify-content-between">
-                                    <span>Total (USD)</span>
-                                    <strong>${totalPrice}$</strong>
-                                </li>`
+                        <span>Total (USD)</span>
+                        <strong>${totalPrice}$</strong>
+                    </li>`
             $("#items").html(html);
         }
 
@@ -80,7 +80,7 @@
                         discount: 0
                     }))
             };
-            app.orders.insert(JSON.stringify(payload)).subscribe(
+            app.orders.insert(payload).subscribe(
                 (resp) => {
                     app.cart.clear();
                     app.cart.save();

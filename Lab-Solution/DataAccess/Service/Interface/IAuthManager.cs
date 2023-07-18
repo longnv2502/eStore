@@ -3,11 +3,11 @@ using DataAccess.Models;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace DataAccess.Services
+namespace DataAccess.Service.Interface
 {
     public interface IAuthManager
     {
-        String GetUserId();
+        string GetUserId();
         IEnumerable<Claim>? DecodeJwt2Claims();
         Task<bool> ValidateUser(LoginUserDTO userDTO);
         Task<string> CreateToken();

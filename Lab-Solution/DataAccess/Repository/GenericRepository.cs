@@ -64,7 +64,7 @@ namespace DataAccess.Repository
                 .ToPagedListAsync(pageable.PageNumber, pageable.PageSize);
         }
 
-        public async Task<T> Get(Expression<Func<T, bool>> expression, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
+        public async Task<T?> Get(Expression<Func<T, bool>> expression, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
         {
             IQueryable<T> query = _db;
             if (include != null)
@@ -75,9 +75,10 @@ namespace DataAccess.Repository
             return await query.AsNoTracking().FirstOrDefaultAsync(expression);
         }
 
-        public async Task Insert(T entity)
+        public async Task<T> Insert(T entity)
         {
             await _db.AddAsync(entity);
+            return entity;
         }
 
         public async Task InsertRange(IEnumerable<T> entities)
@@ -85,9 +86,10 @@ namespace DataAccess.Repository
             await _db.AddRangeAsync(entities);
         }
 
-        public async Task<T> Patch(JsonPatchDocument patch, params object[] keyValues)
+        public async Task<T?> Patch(JsonPatchDocument patch, params object[] keyValues)
         {
             var entity = await _db.FindAsync(keyValues);
+            if (entity == null) return null;
             patch.ApplyTo(entity);
             Update(entity);
             return entity;
@@ -96,6 +98,7 @@ namespace DataAccess.Repository
         public async Task<T> Delete(params object[] keyValues)
         {
             var entity = await _db.FindAsync(keyValues);
+            if (entity == null) return null;
             _db.Remove(entity);
             return entity;
         }
@@ -105,10 +108,11 @@ namespace DataAccess.Repository
             _db.RemoveRange(entities);
         }
 
-        public void Update(T entity)
+        public T Update(T entity)
         {
             _db.Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
+            return entity;
         }
 
         public void UpdateRange(IEnumerable<T> entities)

@@ -15,6 +15,7 @@ namespace DataAccess.Configuration
         public MapperInitilizer()
         {
             CreateMap<ApplicationUser, RegisterUserDTO>().ReverseMap();
+            CreateMap<ApplicationUser, ProfileUpdateDto>().ReverseMap();
             CreateMap<OrderDetail, OrderDetailDTO>().ReverseMap();
             CreateMap<Order, OrderDTO>()
                 .ForMember(dest => dest.OrderDetailDTOs, act => act.MapFrom(src => src.OrderDetails))

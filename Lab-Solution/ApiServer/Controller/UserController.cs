@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using BussinessObject.Models;
-using DataAccess.Services;
+using DataAccess.Dtos;
+using DataAccess.Service.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApiServer.Controller
@@ -31,7 +33,8 @@ namespace ApiServer.Controller
 
         [HttpGet]
         [Route("")]
-        [Authorize]
+        [EnableQuery]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> GetAll()
         {
             var users = await _userManager.Users.ToListAsync();
@@ -40,14 +43,38 @@ namespace ApiServer.Controller
 
         [HttpGet]
         [Route("{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> GetById(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
             return Ok(user);
         }
 
+        [HttpGet]
+        [Route("profile")]
+        [Authorize]
+        public async Task<IActionResult> Profile()
+        {
+            var userId = _authManager.GetUserId();
+            var user = await _userManager.FindByIdAsync(userId);
+            return Ok(user);
+        }
+
+        [HttpPut]
+        [Route("profile")]
+        [Authorize]
+        public async Task<IActionResult> EditProfile([FromBody] ProfileUpdateDto payload)
+        {
+            var userId = _authManager.GetUserId();
+            var user = await _userManager.FindByIdAsync(userId);
+            var updateValue = _mapper.Map<ApplicationUser>(payload);
+            user.SetValue(updateValue);
+            await _userManager.UpdateAsync(user);
+            return Ok(user);
+        }
+
         [HttpPost]
-        //[Authorize(Roles = "ADMINISTRATOR")]
+        [Authorize(Roles = "Administrator")]
         [Route("{id}")]
         public async Task<IActionResult> Update(string id, [FromBody] ApplicationUser user)
         {
@@ -56,7 +83,7 @@ namespace ApiServer.Controller
         }
 
         [HttpDelete]
-        //[Authorize(Roles = "ADMINISTRATOR")]
+        [Authorize(Roles = "Administrator")]
         [Route("{id}")]
         public async Task<IActionResult> Delete(string id)
         {

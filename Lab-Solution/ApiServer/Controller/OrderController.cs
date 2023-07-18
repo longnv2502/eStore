@@ -3,11 +3,14 @@ using BussinessObject.Configuration;
 using BussinessObject.Models;
 using DataAccess.Dtos;
 using DataAccess.IRepository;
-using DataAccess.Services;
+using DataAccess.Service.Implement;
+using DataAccess.Service.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 using static NuGet.Packaging.PackagingConstants;
 
 namespace ApiServer.Controller
@@ -16,16 +19,16 @@ namespace ApiServer.Controller
     [ApiController]
     public class OrderController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IOrderManager _orderManager;
         private readonly IAuthManager _authManager;
         private readonly ILogger<OrderController> _logger;
         private readonly IMapper _mapper;
 
-        public OrderController(IUnitOfWork unitOfWork, IAuthManager authManager,
+        public OrderController(IOrderManager orderManager, IAuthManager authManager,
             ILogger<OrderController> logger,
             IMapper mapper)
         {
-            _unitOfWork = unitOfWork;
+            _orderManager = orderManager;
             _authManager = authManager;
             _logger = logger;
             _mapper = mapper;
@@ -33,26 +36,29 @@ namespace ApiServer.Controller
 
         [HttpGet]
         [Route("")]
+        [EnableQuery]
         public async Task<IActionResult> GetAll()
         {
-            var orders = await _unitOfWork.Orders.GetAll(include: act => act.Include(o => o.OrderDetails).Include(o => o.Member));
+            var orders = await _orderManager.GetAll(include: act => act.Include(o => o.OrderDetails).Include(o => o.Member));
             return Ok(orders);
         }
 
         [HttpGet]
-        [Route("{id:int}")]
+        [Route("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var order = await _unitOfWork.Orders.Get(expression: o => o.OrderId == id, include: act => act.Include(o => o.OrderDetails).Include(o => o.Member));
+            var order = await _orderManager.GetById(id, include: act => act.Include(o => o.OrderDetails).Include(o => o.Member));
             return Ok(order);
         }
 
         [HttpGet]
-        //[Authorize]
-        [Route("getByUserId")]
-        public async Task<IActionResult> GetByUserId(string userId)
+        [Authorize]
+        [Route("history")]
+        [EnableQuery]
+        public async Task<IActionResult> HistoryOrder()
         {
-            var orders = await _unitOfWork.Orders.GetAll(expression: o => o.MemberId == userId, include: act => act.Include(o => o.OrderDetails).Include(o => o.Member));
+            var userId = _authManager.GetUserId();
+            var orders = await _orderManager.GetAll(expression: o => o.MemberId == userId, include: act => act.Include(o => o.OrderDetails));
             return Ok(orders);
         }
 
@@ -64,37 +70,32 @@ namespace ApiServer.Controller
             var order = _mapper.Map<Order>(orderDTO);
             var userId = _authManager.GetUserId();
             order.MemberId = userId;
-            order.OrderDate = DateTime.Now;
-            await _unitOfWork.Orders.Insert(order);
-            await _unitOfWork.Save();
-            //await _unitOfWork.OrderDetails.InsertRange(order.OrderDetails);
-            //await _unitOfWork.Save();
-            return Ok(order);
+            DateTime now = DateTime.Now;
+            order.OrderDate = now.Trim(TimeSpan.TicksPerSecond);
+            var insert = await _orderManager.Insert(order);
+            return Ok(insert);
         }
 
         [HttpPut]
-        //[Authorize]
-        [Route("{id:int}")]
+        [Authorize]
+        [Route("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] OrderUpdateDto payload)
         {
-            var order = await _unitOfWork.Orders.Get(p => p.OrderId == id);
+            var order = await _orderManager.GetById(id);
+            if (order == null) return NotFound();
             var updateValue = _mapper.Map<Order>(payload);
             order.SetValue(updateValue);
-            _unitOfWork.Orders.Update(order);
-            await _unitOfWork.Save();
-            return Ok(order);
+            var update = await _orderManager.Update(order);
+            return Ok(update);
         }
 
         [HttpDelete]
-        //[Authorize]
-        [Route("{id:int}")]
+        [Authorize]
+        [Route("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var order = await _unitOfWork.Orders.Get(expression: o => o.OrderId == id, include: act => act.Include(o => o.OrderDetails));
-            await _unitOfWork.Orders.Delete(id);
-            _unitOfWork.OrderDetails.DeleteRange(order.OrderDetails);
-            await _unitOfWork.Save();
-            return Ok();
+            var delete = await _orderManager.Delete(id);
+            return Ok(delete);
         }
     }
 }

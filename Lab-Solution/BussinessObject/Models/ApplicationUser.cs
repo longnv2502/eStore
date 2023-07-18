@@ -18,5 +18,13 @@ namespace BussinessObject.Models
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
         public virtual ICollection<Order> Orders { get; set; }
+
+        public ApplicationUser SetValue(ApplicationUser updateValue)
+        {
+            FirstName = updateValue.FirstName;
+            LastName = updateValue.LastName;
+            PhoneNumber = updateValue.PhoneNumber;
+            return this;
+        }
     }
 }

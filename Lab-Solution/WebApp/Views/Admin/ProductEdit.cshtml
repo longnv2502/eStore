@@ -104,8 +104,7 @@
                 }
                 app.products.update(id, payload).subscribe(
                     (resp) => {
-                        sweetAlert.toast.success("Edit product successfully!");
-                        window.location.href = '../products';
+                        sweetAlert.toast.success("Update product successfully!");
                     }, (err) => {
                         sweetAlert.toast.error("Internal Server Error");
                         console.error(error);

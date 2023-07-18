@@ -60,6 +60,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDaGVja291dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/dclon/OneDrive - 1gtfy6/Documents/FPT_University/23_SUM/PRN231/Project/Lab2/Lab-Solution/WebApp/Views/Home/HistoryOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIaXN0b3J5T3JkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dclon/OneDrive - 1gtfy6/Documents/FPT_University/23_SUM/PRN231/Project/Lab2/Lab-Solution/WebApp/Views/Home/HistoryOrderDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIaXN0b3J5T3JkZXJEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/dclon/OneDrive - 1gtfy6/Documents/FPT_University/23_SUM/PRN231/Project/Lab2/Lab-Solution/WebApp/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -70,6 +78,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/dclon/OneDrive - 1gtfy6/Documents/FPT_University/23_SUM/PRN231/Project/Lab2/Lab-Solution/WebApp/Views/Home/ProductDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcm9kdWN0RGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dclon/OneDrive - 1gtfy6/Documents/FPT_University/23_SUM/PRN231/Project/Lab2/Lab-Solution/WebApp/Views/Home/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dclon/OneDrive - 1gtfy6/Documents/FPT_University/23_SUM/PRN231/Project/Lab2/Lab-Solution/WebApp/Views/Home/ProfileEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcm9maWxlRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/dclon/OneDrive - 1gtfy6/Documents/FPT_University/23_SUM/PRN231/Project/Lab2/Lab-Solution/WebApp/Views/Shared/Error.cshtml]

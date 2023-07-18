@@ -3,7 +3,7 @@ using BussinessObject.Configuration;
 using BussinessObject.Models;
 using DataAccess.Dtos;
 using DataAccess.Models;
-using DataAccess.Services;
+using DataAccess.Service.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +20,6 @@ namespace ApiServer.Controller
     public class AuthController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<AuthController> _logger;
         private readonly IMapper _mapper;
         private readonly IAuthManager _authManager;
@@ -78,8 +77,16 @@ namespace ApiServer.Controller
         public async Task<IActionResult> Login([FromBody] LoginUserDTO userDTO)
         {
             _logger.LogInformation($"Login Attempt for {userDTO.Email} ");
+            string failure;
+            HttpContext.Request.Cookies.TryGetValue("LoginInfo", out failure);
+            int fail = Convert.ToInt32(failure);
+            if (fail > 5)
+            {
+                return Problem($"The user has sent too many requests in a given amount of time", statusCode: 429);
+            }
             if (!ModelState.IsValid)
             {
+                fail++;
                 return BadRequest(ModelState);
             }
 
@@ -87,6 +94,7 @@ namespace ApiServer.Controller
             {
                 if (!await _authManager.ValidateUser(userDTO))
                 {
+                    fail++;
                     return Unauthorized();
                 }
                 var Token = await _authManager.CreateToken();
@@ -95,8 +103,13 @@ namespace ApiServer.Controller
             }
             catch (Exception ex)
             {
+                fail++;
                 _logger.LogError(ex, $"Something Went Wrong in the {nameof(Login)}");
                 return Problem($"Something Went Wrong in the {nameof(Login)}", statusCode: 500);
+            }
+            finally
+            {
+                HttpContext.Response.Cookies.Append("LoginInfo", fail.ToString());
             }
         }
 

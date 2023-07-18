@@ -18,5 +18,10 @@ namespace BussinessObject.Configuration
         {
             public static readonly string ID = "431b72eb-3370-45ce-b9fa-fa0dea66e5c6";
         }
+
+        public class User
+        {
+            public static readonly string ID = "2a58a338-9d5a-41df-9e6a-ea69ff75618b";
+        }
     }
 }

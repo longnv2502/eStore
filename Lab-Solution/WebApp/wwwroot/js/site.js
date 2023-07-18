@@ -24,6 +24,8 @@
     const ENDPOINT = {
         REGISTER: 'register',
         LOGIN: 'login',
+        PROFILE: 'profile',
+        HISTORY: 'history',
     };
 
     const groupItemCarts = () => {
@@ -73,8 +75,8 @@
 
     const initRestful = (path) => {
         return {
-            getAll: () => {
-                return request(`${API_BASE_DOMAIN}/${path}`, METHOD.GET);
+            getAll: (query) => {
+                return request(`${API_BASE_DOMAIN}/${path}${query ? '/' + query : ''}`, METHOD.GET);
             },
 
             getById: (id) => {
@@ -145,13 +147,24 @@
 
         orders: {
             ...initRestful(PATH.ORDER),
+            history: (query) => {
+                return request(`${API_BASE_DOMAIN}/${PATH.ORDER}/${ENDPOINT.HISTORY}${query ? '/' + query : ''}`, METHOD.GET);
+            }
         },
 
         products: {
             ...initRestful(PATH.PRODUCT),
         },
 
-        users: restApiUsers,
+        users: {
+            ...restApiUsers,
+            getProfile: () => {
+                return request(`${API_BASE_DOMAIN}/${PATH.USER}/${ENDPOINT.PROFILE}`, METHOD.GET);
+            },
+            updateProfile: (payload) => {
+                return request(`${API_BASE_DOMAIN}/${PATH.USER}/${ENDPOINT.PROFILE}`, METHOD.PUT, payload);
+            }
+        },
     }
 }
 

@@ -248,14 +248,18 @@ namespace BussinessObject.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "7a5b379f-3f38-45ec-b812-d051c922cdc6", "8ad11418-4445-468a-a586-636b6081b799", "Administrator", "ADMINISTRATOR" },
-                    { "aeb2da8e-c86f-42ed-b14d-8b7103c8ab51", "d0d27b6b-aaaf-4c53-90e6-3a406ae104db", "User", "USER" }
+                    { "7a5b379f-3f38-45ec-b812-d051c922cdc6", "f21ab11f-57f3-49ee-bb2b-d36e8d9ae68c", "Administrator", "ADMINISTRATOR" },
+                    { "aeb2da8e-c86f-42ed-b14d-8b7103c8ab51", "40cd23ce-88e1-4a32-987e-8bd09b16e0a5", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "431b72eb-3370-45ce-b9fa-fa0dea66e5c6", 0, "fc3e228a-90a7-4ca8-9f81-0f7d866df5ed", "ApplicationUser", "admin@estore.com", true, "Long", "NV", false, null, "admin@estore.com", "Administrator", "AQAAAAEAACcQAAAAEDimBwHnlm67pvQDzMt03DpDlnp3U3LzIyHI1r5g7xzn+gJTcK2q1bbfOFMcAl60PQ==", null, false, "", false, "Administrator" });
+                values: new object[,]
+                {
+                    { "2a58a338-9d5a-41df-9e6a-ea69ff75618b", 0, "7764adfd-bc1d-498e-8235-8eacc78c7ea7", "ApplicationUser", "dclong2502@gmail.com", true, "Long", "NV", false, null, "dclong2502@gmail.com", "dclong2502", "AQAAAAEAACcQAAAAENp352GF+DHuqDm3sCX2SWJSQQX4Ob0a0uPpaJZTUjDaMxS+qDGM2un3IkMcb7CcVg==", null, false, "", false, "dclong2502" },
+                    { "431b72eb-3370-45ce-b9fa-fa0dea66e5c6", 0, "5e5aa3fc-bc44-4304-b269-afb3ac5d7b7f", "ApplicationUser", "admin@estore.com", true, "Admin", "", false, null, "admin@estore.com", "Administrator", "AQAAAAEAACcQAAAAEH4yCG9sgTzhkpT7sXWzOS7RRpH4kxc1MNsOHckPPJY7Yo96EuN5ycpgwNaZSWJ6fg==", null, false, "", false, "Administrator" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Category",
@@ -272,7 +276,11 @@ namespace BussinessObject.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "7a5b379f-3f38-45ec-b812-d051c922cdc6", "431b72eb-3370-45ce-b9fa-fa0dea66e5c6" });
+                values: new object[,]
+                {
+                    { "aeb2da8e-c86f-42ed-b14d-8b7103c8ab51", "2a58a338-9d5a-41df-9e6a-ea69ff75618b" },
+                    { "7a5b379f-3f38-45ec-b812-d051c922cdc6", "431b72eb-3370-45ce-b9fa-fa0dea66e5c6" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Product",

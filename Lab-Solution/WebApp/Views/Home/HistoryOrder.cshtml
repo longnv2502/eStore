@@ -1,0 +1,105 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>History Order</h1>
+<form method="get">
+    <table class="form-actions no-color w-100" style="border-collapse:separate;border-spacing:0 8px">
+        <colgroup>
+            <col width="30%">
+            <col>
+        </colgroup>
+        <tr>
+            <td><label class="form-label" for="startDate">Filter By StartDate Order</label></td>
+            <td><input type="datetime-local" id="startDate" name="startDate" class="form-control" /></td>
+        </tr>
+        <tr>
+            <td><label class="form-label" for="endDate">Filter By EndDate Order</label></td>
+            <td><input type="datetime-local" id="endDate" name="endDate" class="form-control" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Filter" class="btn round-black-btn" /></td>
+        </tr>
+    </table>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>OrderId</th>
+            <th>OrderDate</th>
+            <th>RequiredDate</th>
+            <th>ShippedDate</th>
+            <th>Feight</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="historyOrders">
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        let orders = [];
+        const init = (query) => {
+            app.orders.history(query).subscribe(
+                (resp) => {
+                    orders = resp;
+                    render();
+                }, (err) => {
+                    sweetAlert.toast.error("Server is error!");
+                    console.error(error);
+                }
+            )
+        };
+
+        init();
+
+        const render = () => {
+            let html = '';
+            orders.forEach((item) => {
+                html += `
+                        <tr>
+                            <td>
+                                ${item.orderId}
+                            </td>
+                            <td>
+                                ${item.orderDate}
+                            </td>
+                            <td>
+                                ${item.requiredDate}
+                            </td>
+                            <td>
+                                ${item.shippedDate}
+                            </td>
+                            <td>
+                                ${item.feight}
+                            </td>
+                            <td>
+                                <a href="history/detail?id=${item.orderId}"><button class="btn btn-info">Details</button></a>
+                            </td>
+                        </tr>
+                        `;
+            });
+            console.log(html);
+            $("#historyOrders").html(html);
+        };
+
+        $("form").submit(function (event) {
+            event.preventDefault();
+            const payload = {
+                "startDate": event.currentTarget[0].value,
+                "endDate": event.currentTarget[1].value,
+            }
+            let query = '';
+            if (payload.startDate || payload.endDate) query += '?$filter=';
+            if (payload.startDate) query += `OrderDate gt ${payload.startDate} and `;
+            if (payload.endDate) query += `OrderDate lt ${payload.endDate} and `;
+            query = query.trim().substring(0, query.length - 4);
+            console.log(query);
+            init();
+        });
+    </script>
+}

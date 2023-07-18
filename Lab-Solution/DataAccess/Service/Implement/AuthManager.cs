@@ -1,6 +1,7 @@
 ﻿using BussinessObject.Models;
 using DataAccess.Dtos;
 using DataAccess.Models;
+using DataAccess.Service.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -15,7 +16,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Services
+namespace DataAccess.Service.Implement
 {
     public class AuthManager : IAuthManager
     {
@@ -32,7 +33,7 @@ namespace DataAccess.Services
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public String GetUserId()
+        public string GetUserId()
         {
             var claims = DecodeJwt2Claims();
             return claims.FirstOrDefault(x => x.Type.Equals("Id")).Value;
@@ -103,7 +104,7 @@ namespace DataAccess.Services
         {
             _user = await _userManager.FindByEmailAsync(userDTO.Email);
             var validPassword = await _userManager.CheckPasswordAsync(_user, userDTO.Password);
-            return (_user != null && validPassword);
+            return _user != null && validPassword;
         }
 
         public async Task<string> CreateRefreshToken()

@@ -12,14 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BussinessObject.Migrations
 {
     [DbContext(typeof(EStoreContext))]
-    [Migration("20230717154124_initDb")]
+    [Migration("20230718134308_initDb")]
     partial class initDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.18")
+                .HasAnnotation("ProductVersion", "6.0.16")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -321,14 +321,14 @@ namespace BussinessObject.Migrations
                         new
                         {
                             Id = "aeb2da8e-c86f-42ed-b14d-8b7103c8ab51",
-                            ConcurrencyStamp = "d0d27b6b-aaaf-4c53-90e6-3a406ae104db",
+                            ConcurrencyStamp = "40cd23ce-88e1-4a32-987e-8bd09b16e0a5",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "7a5b379f-3f38-45ec-b812-d051c922cdc6",
-                            ConcurrencyStamp = "8ad11418-4445-468a-a586-636b6081b799",
+                            ConcurrencyStamp = "f21ab11f-57f3-49ee-bb2b-d36e8d9ae68c",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -496,6 +496,11 @@ namespace BussinessObject.Migrations
                         {
                             UserId = "431b72eb-3370-45ce-b9fa-fa0dea66e5c6",
                             RoleId = "7a5b379f-3f38-45ec-b812-d051c922cdc6"
+                        },
+                        new
+                        {
+                            UserId = "2a58a338-9d5a-41df-9e6a-ea69ff75618b",
+                            RoleId = "aeb2da8e-c86f-42ed-b14d-8b7103c8ab51"
                         });
                 });
 
@@ -537,17 +542,35 @@ namespace BussinessObject.Migrations
                         {
                             Id = "431b72eb-3370-45ce-b9fa-fa0dea66e5c6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fc3e228a-90a7-4ca8-9f81-0f7d866df5ed",
+                            ConcurrencyStamp = "5e5aa3fc-bc44-4304-b269-afb3ac5d7b7f",
                             Email = "admin@estore.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@estore.com",
                             NormalizedUserName = "Administrator",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDimBwHnlm67pvQDzMt03DpDlnp3U3LzIyHI1r5g7xzn+gJTcK2q1bbfOFMcAl60PQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEH4yCG9sgTzhkpT7sXWzOS7RRpH4kxc1MNsOHckPPJY7Yo96EuN5ycpgwNaZSWJ6fg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
                             UserName = "Administrator",
+                            FirstName = "Admin",
+                            LastName = ""
+                        },
+                        new
+                        {
+                            Id = "2a58a338-9d5a-41df-9e6a-ea69ff75618b",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "7764adfd-bc1d-498e-8235-8eacc78c7ea7",
+                            Email = "dclong2502@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "dclong2502@gmail.com",
+                            NormalizedUserName = "dclong2502",
+                            PasswordHash = "AQAAAAEAACcQAAAAENp352GF+DHuqDm3sCX2SWJSQQX4Ob0a0uPpaJZTUjDaMxS+qDGM2un3IkMcb7CcVg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "dclong2502",
                             FirstName = "Long",
                             LastName = "NV"
                         });

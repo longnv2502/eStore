@@ -1,0 +1,96 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="col-md-6 d-flex align-center justify-content-between">
+    <h1>ProfileEdit</h1>
+    <button class="btn round-black-btn float-end">Change Password</button>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <form action="" method="post">
+            <div class="form-group mb-4 row">
+                <div class="col-6">
+                    <label class="form-label" for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" />
+                </div>
+                <div class="col-6">
+                    <label class="form-label" for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" class="form-control form-control-lg" />
+                </div>
+            </div>
+
+            <div class="form-group mb-4">
+                <label class="form-label" for="email">Email</label>
+                <input type="text" id="email" name="email" disabled class="form-control form-control-lg" />
+            </div>
+
+            <div class="form-group mb-4">
+                <label class="form-label" for="phoneNumber">PhoneNumber</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control form-control-lg" />
+            </div>
+            <div class="d-flex justify-content-start">
+                <button type="submit" class="btn round-black-btn btn-block btn-lg mb-4"> Update </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        app.users.getProfile().subscribe(
+            (resp) => {
+                $("input[name='firstName']").val(resp.firstName);
+                $("input[name='lastName']").val(resp.lastName);
+                $("input[name='email']").val(resp.email);
+                $("input[name='phoneNumber']").val(resp.phoneNumber);
+            }, (err) => {
+                sweetAlert.toast.error("Internal Server Error!");
+                console.error(error);
+            }
+        )
+
+        const form = $("form");
+        form.validate({
+            onfocusout: false,
+            onkeyup: false,
+            onclick: false,
+            errorClass: 'is-invalid',
+            validClass: 'is-valid',
+            rules: {
+                "firstName": {
+                    required: true,
+                },
+                "lastName": {
+                    required: true,
+                },
+                "phoneNumber": {
+                    required: true,
+                },
+            }
+        });
+
+        form.submit(function (event) {
+            event.preventDefault();
+            if (form.valid()) {
+                const payload = {
+                    "firstName": event.currentTarget[0].value,
+                    "lastName": event.currentTarget[1].value,
+                    "phoneNumber": event.currentTarget[3].value,
+                }
+                app.users.updateProfile(payload).subscribe(
+                    (resp) => {
+                        sweetAlert.toast.success("Update profile successfully!");
+                    }, (err) => {
+                        sweetAlert.toast.error("Internal Server Error");
+                        console.error(error);
+                    }
+                )
+            }
+        });
+    </script>
+}

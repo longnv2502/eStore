@@ -11,7 +11,6 @@
         <th>Email</th>
         <th>Name</th>
         <th>PhoneNumber</th>
-        <th>Action</th>
     </tr>
     </thead>
     <tbody>
@@ -71,11 +70,6 @@
                                 </td>
                                 <td>
                                     ${item.phoneNumber}
-                                </td>
-                                <td>
-                                    <a href="./edit/${item.id}"><button class="btn btn-secondary">Edit</button></a>
-                                    <a href="./details/${item.id}"><button class="btn btn-info">Details</button></a>
-                                    <button class="btn btn-danger" onclick="deleteItem(${item.id})">Delete</button>
                                 </td>
                             </tr>
                             `;

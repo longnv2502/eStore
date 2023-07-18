@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
                 <label for="requiredDate" class="control-label">Required Date</label>
-                <input type="datetime" name="requiredDate" id="requiredDate" class="form-control" />
+                <input type="datetime-local" name="requiredDate" id="requiredDate" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="shippedDate" class="control-label">Shipped Date</label>
@@ -54,6 +54,7 @@
         const id = searchParams.get("id");
         app.orders.getById(id).subscribe(
             (resp) => {
+                console.log(resp.orderDate);
                 $("input[name='orderId']").val(resp.orderId);
                 $("input[name='orderDate']").val(resp.orderDate);
                 $("input[name='requiredDate']").val(resp.requiredDate);
@@ -107,8 +108,7 @@
                 }
                 app.orders.update(id, payload).subscribe(
                     (resp) => {
-                        sweetAlert.toast.success("Edit order successfully!");
-                        window.location.href = '../orders';
+                        sweetAlert.toast.success("Update order successfully!");
                     }, (err) => {
                         sweetAlert.toast.error("Server is error!");
                         console.error(error);

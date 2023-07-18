@@ -62,7 +62,7 @@ namespace WebApp.Controllers
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
                     return Ok(token);
                 }
-                return NotFound();
+                return Problem($"Internal Server Error", statusCode: (int)responseMessage.StatusCode);
             }
 
             catch (Exception)

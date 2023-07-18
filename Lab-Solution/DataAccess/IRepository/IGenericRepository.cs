@@ -23,13 +23,13 @@ namespace DataAccess.IRepository
             Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null
             );
 
-        Task<T> Get(Expression<Func<T, bool>> expression, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
-        Task Insert(T entity);
+        Task<T?> Get(Expression<Func<T, bool>> expression, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
+        Task<T> Insert(T entity);
         Task InsertRange(IEnumerable<T> entities);
-        Task<T> Patch(JsonPatchDocument patch, params object[] keyValues);
-        Task<T> Delete(params object[] keyValues);
+        Task<T?> Patch(JsonPatchDocument patch, params object[] keyValues);
+        Task<T?> Delete(params object[] keyValues);
         void DeleteRange(IEnumerable<T> entities);
-        void Update(T entity);
+        T Update(T entity);
         void UpdateRange(IEnumerable<T> entities);
     }
 }

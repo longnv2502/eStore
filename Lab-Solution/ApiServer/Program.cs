@@ -1,7 +1,8 @@
 using BussinessObject.Models;
 using DataAccess.IRepository;
 using DataAccess.Repository;
-using DataAccess.Services;
+using DataAccess.Service.Implement;
+using DataAccess.Service.Interface;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.OData;
@@ -9,7 +10,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 using System.Configuration;
@@ -19,9 +19,10 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 var _jwtSettings = builder.Configuration.GetSection("Jwt");
-builder.Services.AddControllers();
-builder.Services.AddHttpContextAccessor();
+// Add service Odata
+builder.Services.AddControllers().AddOData(options => options.Select().Filter().OrderBy().Count());
 
+builder.Services.AddHttpContextAccessor();
 // Logging
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
@@ -61,6 +62,13 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddTokenProvider(_jwtSettings.GetSection("Issuer").Value, typeof(DataProtectorTokenProvider<ApplicationUser>));
 builder.Services.AddIdentityCore<ApplicationUser>(q => { q.User.RequireUniqueEmail = true; });
 
+builder.Services.AddIdentityCore<ApplicationUser>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = true;
+    options.Lockout.MaxFailedAccessAttempts = 5;
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+});
+
 // Connect Jwt
 builder.Services.AddAuthentication(o =>
             {
@@ -95,6 +103,9 @@ builder.Services.AddControllersWithViews().AddNewtonsoftJson(
 // Service Scope
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IAuthManager, AuthManager>();
+builder.Services.AddScoped<ICategoryManager, CategoryManager>();
+builder.Services.AddScoped<IOrderManager, OrderManager>();
+builder.Services.AddScoped<IProductManager, ProductManager>();
 
 // Serivce AutoMapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
